@@ -29,3 +29,4 @@ Route::resource('pegawais', App\Http\Controllers\PegawaiController::class);
 Route::resource('pembelis', App\Http\Controllers\PembeliController::class);
 Route::resource('transaksis', App\Http\Controllers\TransaksiController::class);
 Route::resource('suppliers', App\Http\Controllers\SupplierController::class);
+Route::resource('keranjangs', App\Http\Controllers\KeranjangController::class);

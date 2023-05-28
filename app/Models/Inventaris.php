@@ -32,7 +32,8 @@ use Illuminate\Database\Eloquent\Model;
         'jumlah',
         'harga',
         'last_updt',
-        'id_supplier'
+        'id_supplier',
+        'image'
     ];
 
     protected $casts = [
@@ -45,7 +46,8 @@ use Illuminate\Database\Eloquent\Model;
         'jumlah' => 'nullable',
         'harga' => 'nullable',
         'last_updt' => 'nullable|string|max:100',
-        'id_supplier' => 'nullable'
+        'id_supplier' => 'nullable',
+        'image' => 'nullable|string|max:100'
     ];
 
     public function supplier(): \Illuminate\Database\Eloquent\Relations\BelongsTo

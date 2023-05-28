@@ -61,3 +61,10 @@
         <p>Supplier</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="{{ route('keranjangs.index') }}" class="nav-link {{ Request::is('keranjangs*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Keranjangs</p>
+    </a>
+</li>

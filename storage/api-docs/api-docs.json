@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Furniskuy APIs",
+        "title": "InfyOm Laravel Generator APIs",
         "version": "1.0.0"
     },
     "servers": [
@@ -12,7 +12,9 @@
     "paths": {
         "/barang-keluars": {
             "get": {
-                "tags": ["BarangKeluar"],
+                "tags": [
+                    "BarangKeluar"
+                ],
                 "summary": "getBarangKeluarList",
                 "description": "Get all BarangKeluars",
                 "operationId": "75c59269ac55dd545c5b117ed8578861",
@@ -44,7 +46,9 @@
                 }
             },
             "post": {
-                "tags": ["BarangKeluar"],
+                "tags": [
+                    "BarangKeluar"
+                ],
                 "summary": "createBarangKeluar",
                 "description": "Create BarangKeluar",
                 "operationId": "209c67d3bad752a9ba84da51182d2f91",
@@ -85,7 +89,9 @@
         },
         "/barang-keluars/{id}": {
             "get": {
-                "tags": ["BarangKeluar"],
+                "tags": [
+                    "BarangKeluar"
+                ],
                 "summary": "getBarangKeluarItem",
                 "description": "Get BarangKeluar",
                 "operationId": "fa031454d0103814c09a2b2f4c7aacce",
@@ -125,7 +131,9 @@
                 }
             },
             "put": {
-                "tags": ["BarangKeluar"],
+                "tags": [
+                    "BarangKeluar"
+                ],
                 "summary": "updateBarangKeluar",
                 "description": "Update BarangKeluar",
                 "operationId": "5fa4dd2037aa558866162a0472dcdbbc",
@@ -175,7 +183,9 @@
                 }
             },
             "delete": {
-                "tags": ["BarangKeluar"],
+                "tags": [
+                    "BarangKeluar"
+                ],
                 "summary": "deleteBarangKeluar",
                 "description": "Delete BarangKeluar",
                 "operationId": "76d8aaede2d4c2b66a48807042fed7de",
@@ -217,7 +227,9 @@
         },
         "/barang-masuks": {
             "get": {
-                "tags": ["BarangMasuk"],
+                "tags": [
+                    "BarangMasuk"
+                ],
                 "summary": "getBarangMasukList",
                 "description": "Get all BarangMasuks",
                 "operationId": "7cb18ad123c77c2cc40ec569c973e9c1",
@@ -249,7 +261,9 @@
                 }
             },
             "post": {
-                "tags": ["BarangMasuk"],
+                "tags": [
+                    "BarangMasuk"
+                ],
                 "summary": "createBarangMasuk",
                 "description": "Create BarangMasuk",
                 "operationId": "ed27426d2514a9147dbc08d682294a39",
@@ -290,7 +304,9 @@
         },
         "/barang-masuks/{id}": {
             "get": {
-                "tags": ["BarangMasuk"],
+                "tags": [
+                    "BarangMasuk"
+                ],
                 "summary": "getBarangMasukItem",
                 "description": "Get BarangMasuk",
                 "operationId": "5e8b121a1bda7e1f9e2433d4202ef8c3",
@@ -330,7 +346,9 @@
                 }
             },
             "put": {
-                "tags": ["BarangMasuk"],
+                "tags": [
+                    "BarangMasuk"
+                ],
                 "summary": "updateBarangMasuk",
                 "description": "Update BarangMasuk",
                 "operationId": "9e9fb2a8ebeb2a11ba29ab22b09a05ff",
@@ -380,7 +398,9 @@
                 }
             },
             "delete": {
-                "tags": ["BarangMasuk"],
+                "tags": [
+                    "BarangMasuk"
+                ],
                 "summary": "deleteBarangMasuk",
                 "description": "Delete BarangMasuk",
                 "operationId": "90db3b83612b18001f160803e15141d7",
@@ -422,7 +442,9 @@
         },
         "/ekspedisis": {
             "get": {
-                "tags": ["Ekspedisi"],
+                "tags": [
+                    "Ekspedisi"
+                ],
                 "summary": "getEkspedisiList",
                 "description": "Get all Ekspedisi",
                 "operationId": "78abd624c0cc78a075d548dc8b36d122",
@@ -454,7 +476,9 @@
                 }
             },
             "post": {
-                "tags": ["Ekspedisi"],
+                "tags": [
+                    "Ekspedisi"
+                ],
                 "summary": "createEkspedisi",
                 "description": "Create Ekspedisi",
                 "operationId": "f074287f241d9510b92bbc54b332b824",
@@ -495,7 +519,9 @@
         },
         "/ekspedisis/{id}": {
             "get": {
-                "tags": ["Ekspedisi"],
+                "tags": [
+                    "Ekspedisi"
+                ],
                 "summary": "getEkspedisiItem",
                 "description": "Get Ekspedisi",
                 "operationId": "1a234a907871e1b8fed058f5a53bff9e",
@@ -535,7 +561,9 @@
                 }
             },
             "put": {
-                "tags": ["Ekspedisi"],
+                "tags": [
+                    "Ekspedisi"
+                ],
                 "summary": "updateEkspedisi",
                 "description": "Update Ekspedisi",
                 "operationId": "79b84a22cabca066446c6adc60a92aeb",
@@ -585,7 +613,9 @@
                 }
             },
             "delete": {
-                "tags": ["Ekspedisi"],
+                "tags": [
+                    "Ekspedisi"
+                ],
                 "summary": "deleteEkspedisi",
                 "description": "Delete Ekspedisi",
                 "operationId": "ab02ce69e38206232321385877d7cc80",
@@ -627,7 +657,9 @@
         },
         "/inventaris": {
             "get": {
-                "tags": ["Inventaris"],
+                "tags": [
+                    "Inventaris"
+                ],
                 "summary": "getInventarisList",
                 "description": "Get all Inventaris",
                 "operationId": "365d64595728b205925bdc998007f05a",
@@ -659,7 +691,9 @@
                 }
             },
             "post": {
-                "tags": ["Inventaris"],
+                "tags": [
+                    "Inventaris"
+                ],
                 "summary": "createInventaris",
                 "description": "Create Inventaris",
                 "operationId": "30d263d41e9591e7e569084bed264c48",
@@ -700,7 +734,9 @@
         },
         "/inventaris/{id}": {
             "get": {
-                "tags": ["Inventaris"],
+                "tags": [
+                    "Inventaris"
+                ],
                 "summary": "getInventarisItem",
                 "description": "Get Inventaris",
                 "operationId": "12c97a5f5ea975446c061af85d9c8ba5",
@@ -740,7 +776,9 @@
                 }
             },
             "put": {
-                "tags": ["Inventaris"],
+                "tags": [
+                    "Inventaris"
+                ],
                 "summary": "updateInventaris",
                 "description": "Update Inventaris",
                 "operationId": "124acb3d1da734f0ddc88cc72b160dbc",
@@ -790,7 +828,9 @@
                 }
             },
             "delete": {
-                "tags": ["Inventaris"],
+                "tags": [
+                    "Inventaris"
+                ],
                 "summary": "deleteInventaris",
                 "description": "Delete Inventaris",
                 "operationId": "eee4dd0b3ea929fcbcdcdb970956d5af",
@@ -830,9 +870,226 @@
                 }
             }
         },
+        "/keranjangs": {
+            "get": {
+                "tags": [
+                    "Keranjang"
+                ],
+                "summary": "getKeranjangList",
+                "description": "Get all Keranjangs",
+                "operationId": "0ef5da25990af4ba372e372baf4b3fc6",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Keranjang"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Keranjang"
+                ],
+                "summary": "createKeranjang",
+                "description": "Create Keranjang",
+                "operationId": "e11f3315236963c46a1608c29c7abcf7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Keranjang"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Keranjang"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/keranjangs/{id}": {
+            "get": {
+                "tags": [
+                    "Keranjang"
+                ],
+                "summary": "getKeranjangItem",
+                "description": "Get Keranjang",
+                "operationId": "016bf35cc901d1b1fde945a220d85ddb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Keranjang",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Keranjang"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Keranjang"
+                ],
+                "summary": "updateKeranjang",
+                "description": "Update Keranjang",
+                "operationId": "82d7a5cea4b705cf0d4c18287253f6c1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Keranjang",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Keranjang"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Keranjang"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Keranjang"
+                ],
+                "summary": "deleteKeranjang",
+                "description": "Delete Keranjang",
+                "operationId": "de11c78ed2dbbff9175fc4bc915a9ba7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Keranjang",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/pegawais": {
             "get": {
-                "tags": ["Pegawai"],
+                "tags": [
+                    "Pegawai"
+                ],
                 "summary": "getPegawaiList",
                 "description": "Get all Pegawai",
                 "operationId": "2f6dc82a8a8ef57a33b226e0f783cde6",
@@ -864,7 +1121,9 @@
                 }
             },
             "post": {
-                "tags": ["Pegawai"],
+                "tags": [
+                    "Pegawai"
+                ],
                 "summary": "createPegawai",
                 "description": "Create Pegawai",
                 "operationId": "592fbb4ad4287e3e18a0b45eec1022d9",
@@ -905,7 +1164,9 @@
         },
         "/pegawais/{id}": {
             "get": {
-                "tags": ["Pegawai"],
+                "tags": [
+                    "Pegawai"
+                ],
                 "summary": "getPegawaiItem",
                 "description": "Get Pegawai",
                 "operationId": "4ba84a51d47c3bccdf925b5bcc289612",
@@ -945,7 +1206,9 @@
                 }
             },
             "put": {
-                "tags": ["Pegawai"],
+                "tags": [
+                    "Pegawai"
+                ],
                 "summary": "updatePegawai",
                 "description": "Update Pegawai",
                 "operationId": "ebc8e5fd7a1df27dcbeae5d15a5c7a6a",
@@ -995,7 +1258,9 @@
                 }
             },
             "delete": {
-                "tags": ["Pegawai"],
+                "tags": [
+                    "Pegawai"
+                ],
                 "summary": "deletePegawai",
                 "description": "Delete Pegawai",
                 "operationId": "e7ef8121ce6ea89c9469a8151f3cd1d7",
@@ -1037,7 +1302,9 @@
         },
         "/pembelis": {
             "get": {
-                "tags": ["Pembeli"],
+                "tags": [
+                    "Pembeli"
+                ],
                 "summary": "getPembeliList",
                 "description": "Get all Pembeli",
                 "operationId": "a9f9ee631d0971e0f9650e4c576b865f",
@@ -1069,7 +1336,9 @@
                 }
             },
             "post": {
-                "tags": ["Pembeli"],
+                "tags": [
+                    "Pembeli"
+                ],
                 "summary": "createPembeli",
                 "description": "Create Pembeli",
                 "operationId": "cbff4124e015f9e5bf1f87b9549e5b3f",
@@ -1110,7 +1379,9 @@
         },
         "/pembelis/{id}": {
             "get": {
-                "tags": ["Pembeli"],
+                "tags": [
+                    "Pembeli"
+                ],
                 "summary": "getPembeliItem",
                 "description": "Get Pembeli",
                 "operationId": "8e7b07a0a96efae6d79ce5c5f47f8fc8",
@@ -1150,7 +1421,9 @@
                 }
             },
             "put": {
-                "tags": ["Pembeli"],
+                "tags": [
+                    "Pembeli"
+                ],
                 "summary": "updatePembeli",
                 "description": "Update Pembeli",
                 "operationId": "600bbb8a08cd3b1ab672206e1d932daf",
@@ -1200,7 +1473,9 @@
                 }
             },
             "delete": {
-                "tags": ["Pembeli"],
+                "tags": [
+                    "Pembeli"
+                ],
                 "summary": "deletePembeli",
                 "description": "Delete Pembeli",
                 "operationId": "9056f3cfe469ea450e784e5930a16919",
@@ -1242,7 +1517,9 @@
         },
         "/suppliers": {
             "get": {
-                "tags": ["Supplier"],
+                "tags": [
+                    "Supplier"
+                ],
                 "summary": "getSupplierList",
                 "description": "Get all Suppliers",
                 "operationId": "eb7f75eeba2c8414b405c322c4f83892",
@@ -1274,7 +1551,9 @@
                 }
             },
             "post": {
-                "tags": ["Supplier"],
+                "tags": [
+                    "Supplier"
+                ],
                 "summary": "createSupplier",
                 "description": "Create Supplier",
                 "operationId": "e355f338d11b4c3e8218b5918b443c4a",
@@ -1315,7 +1594,9 @@
         },
         "/suppliers/{id}": {
             "get": {
-                "tags": ["Supplier"],
+                "tags": [
+                    "Supplier"
+                ],
                 "summary": "getSupplierItem",
                 "description": "Get Supplier",
                 "operationId": "01de453443ec46411d6bd74d965b1fff",
@@ -1355,7 +1636,9 @@
                 }
             },
             "put": {
-                "tags": ["Supplier"],
+                "tags": [
+                    "Supplier"
+                ],
                 "summary": "updateSupplier",
                 "description": "Update Supplier",
                 "operationId": "fcb426a049d570f8e71c952148af06bd",
@@ -1405,7 +1688,9 @@
                 }
             },
             "delete": {
-                "tags": ["Supplier"],
+                "tags": [
+                    "Supplier"
+                ],
                 "summary": "deleteSupplier",
                 "description": "Delete Supplier",
                 "operationId": "f3452bd713141b6c0c6eee5a74cf056b",
@@ -1447,7 +1732,9 @@
         },
         "/transaksis": {
             "get": {
-                "tags": ["Transaksi"],
+                "tags": [
+                    "Transaksi"
+                ],
                 "summary": "getTransaksiList",
                 "description": "Get all Transaksis",
                 "operationId": "d692711c34ca544b6b81e80303688d9b",
@@ -1479,7 +1766,9 @@
                 }
             },
             "post": {
-                "tags": ["Transaksi"],
+                "tags": [
+                    "Transaksi"
+                ],
                 "summary": "createTransaksi",
                 "description": "Create Transaksi",
                 "operationId": "3be17af55e81699803ebcc13c440c4a2",
@@ -1520,7 +1809,9 @@
         },
         "/transaksis/{id}": {
             "get": {
-                "tags": ["Transaksi"],
+                "tags": [
+                    "Transaksi"
+                ],
                 "summary": "getTransaksiItem",
                 "description": "Get Transaksi",
                 "operationId": "28dacf4d3278447ccea5b454a1480372",
@@ -1560,7 +1851,9 @@
                 }
             },
             "put": {
-                "tags": ["Transaksi"],
+                "tags": [
+                    "Transaksi"
+                ],
                 "summary": "updateTransaksi",
                 "description": "Update Transaksi",
                 "operationId": "197ee62d7a94f592d66c3e59bf6f11a9",
@@ -1610,7 +1903,9 @@
                 }
             },
             "delete": {
-                "tags": ["Transaksi"],
+                "tags": [
+                    "Transaksi"
+                ],
                 "summary": "deleteTransaksi",
                 "description": "Delete Transaksi",
                 "operationId": "92fddd1629c8210421964f36aed5288a",
@@ -1739,6 +2034,14 @@
                 },
                 "type": "object"
             },
+            "Keranjang": {
+                "required": [
+                    "id_barang",
+                    "id_pembeli",
+                    "harga",
+                    "jumlah"
+                ]
+            },
             "Pegawai": {
                 "required": [],
                 "properties": {
@@ -1765,7 +2068,9 @@
                 "type": "object"
             },
             "Pembeli": {
-                "required": ["pembeli_baru"],
+                "required": [
+                    "pembeli_baru"
+                ],
                 "properties": {
                     "nama": {
                         "description": "",

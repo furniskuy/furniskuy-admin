@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateSupplierRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\SupplierRepository;
 use Illuminate\Http\Request;
-use Flash;
+use Laracasts\Flash\Flash;
 
 class SupplierController extends AppBaseController
 {

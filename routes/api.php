@@ -42,3 +42,6 @@ Route::resource('suppliers', App\Http\Controllers\API\SupplierAPIController::cla
 
 Route::resource('transaksis', App\Http\Controllers\API\TransaksiAPIController::class)
     ->except(['create', 'edit']);
+
+Route::resource('keranjangs', App\Http\Controllers\API\KeranjangAPIController::class)
+    ->except(['create', 'edit']);

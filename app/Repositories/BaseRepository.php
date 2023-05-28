@@ -13,7 +13,7 @@ abstract class BaseRepository
     /**
      * @var Model
      */
-    protected $model;
+    public $model;
 
     /**
      * @throws \Exception

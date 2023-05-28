@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateTransaksiRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\TransaksiRepository;
 use Illuminate\Http\Request;
-use Flash;
+use Laracasts\Flash\Flash;
 
 class TransaksiController extends AppBaseController
 {

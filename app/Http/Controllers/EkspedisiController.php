@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateEkspedisiRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\EkspedisiRepository;
 use Illuminate\Http\Request;
-use Flash;
+use Laracasts\Flash\Flash;
 
 class EkspedisiController extends AppBaseController
 {

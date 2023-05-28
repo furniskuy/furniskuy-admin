@@ -7,7 +7,7 @@ use App\Http\Requests\UpdatePegawaiRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\PegawaiRepository;
 use Illuminate\Http\Request;
-use Flash;
+use Laracasts\Flash\Flash;
 
 class PegawaiController extends AppBaseController
 {

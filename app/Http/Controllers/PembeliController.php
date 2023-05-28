@@ -7,7 +7,7 @@ use App\Http\Requests\UpdatePembeliRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\PembeliRepository;
 use Illuminate\Http\Request;
-use Flash;
+use Laracasts\Flash\Flash;
 
 class PembeliController extends AppBaseController
 {

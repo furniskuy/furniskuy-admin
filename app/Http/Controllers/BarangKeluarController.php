@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateBarangKeluarRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\BarangKeluarRepository;
 use Illuminate\Http\Request;
-use Flash;
+use Laracasts\Flash\Flash;
 
 class BarangKeluarController extends AppBaseController
 {
