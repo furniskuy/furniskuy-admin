@@ -19,6 +19,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login']);
+    Route::post('signup', [App\Http\Controllers\API\AuthController::class, 'signup']);
+
+    Route::group(['middleware' => 'auth:sanctum'], function() {
+        Route::get('logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
+        Route::get('user', [App\Http\Controllers\API\AuthController::class, 'user']);
+    });
+});
+
+
 Route::resource('barang-keluars', App\Http\Controllers\API\BarangKeluarAPIController::class)
     ->except(['create', 'edit']);
 
@@ -43,5 +54,13 @@ Route::resource('suppliers', App\Http\Controllers\API\SupplierAPIController::cla
 Route::resource('transaksis', App\Http\Controllers\API\TransaksiAPIController::class)
     ->except(['create', 'edit']);
 
-Route::resource('keranjangs', App\Http\Controllers\API\KeranjangAPIController::class)
+Route::group(['prefix' => 'keranjang'], function () {
+    Route::resource('/', App\Http\Controllers\API\KeranjangAPIController::class)
+        ->except(['create', 'edit']);
+    Route::post('/jumlah/{id}', [App\Http\Controllers\API\KeranjangAPIController::class, 'jumlahKeranjang']);
+    Route::post('/checkout', [App\Http\Controllers\API\KeranjangAPIController::class, 'checkout']);
+});
+
+
+Route::resource('ratings', App\Http\Controllers\API\RatingAPIController::class)
     ->except(['create', 'edit']);

@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1>
-                        Create Inventaris
+                    Create Ratings
                     </h1>
                 </div>
             </div>
@@ -19,19 +19,19 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'inventaris.store', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['route' => 'ratings.store']) !!}
 
             <div class="card-body">
 
                 <div class="row">
-                    @include('inventaris.fields')
+                    @include('ratings.fields')
                 </div>
 
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('inventaris.index') }}" class="btn btn-default"> Cancel </a>
+                <a href="{{ route('ratings.index') }}" class="btn btn-default"> Cancel </a>
             </div>
 
             {!! Form::close() !!}

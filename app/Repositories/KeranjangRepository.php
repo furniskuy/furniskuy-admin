@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Keranjang;
+use App\Models\Transaksi;
 use App\Repositories\BaseRepository;
 
 class KeranjangRepository extends BaseRepository
@@ -22,5 +23,29 @@ class KeranjangRepository extends BaseRepository
     public function model(): string
     {
         return Keranjang::class;
+    }
+
+    public function jumlahKeranjang($id)
+    {
+        return $this->model->where('id_pembeli', $id)->count();
+    }
+
+    // create transaksi with keranjang
+    public function checkout($id)
+    {
+        $keranjang = $this->model->where('id_pembeli', $id)->get();
+        $total = 0;
+        foreach ($keranjang as $item) {
+            $total += $item->harga;
+        }
+        $transaksi = [
+            'id_pembeli' => $id,
+            'terbayar' => 0,
+            'harga' => $total,
+            'jumlah' => $keranjang->count(),
+        ];
+
+        $transaksi = Transaksi::create($transaksi);
+        return $transaksi;
     }
 }

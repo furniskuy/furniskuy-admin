@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateInventarisRequest;
 use App\Http\Requests\UpdateInventarisRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Supplier;
 use App\Repositories\InventarisRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Laracasts\Flash\Flash;
+use App\Http\Traits\UploadImageTrait;
 
 class InventarisController extends AppBaseController
 {
+    use UploadImageTrait;
+
     /** @var InventarisRepository $inventarisRepository*/
     private $inventarisRepository;
 
@@ -36,7 +39,11 @@ class InventarisController extends AppBaseController
      */
     public function create()
     {
-        return view('inventaris.create');
+        $suppliers = Supplier::all()->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['nama']];
+        });
+
+        return view('inventaris.create')->with('suppliers', $suppliers);
     }
 
     /**
@@ -48,33 +55,27 @@ class InventarisController extends AppBaseController
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
-            $fileContent = file_get_contents($image->getRealPath());
 
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/octet-stream',
-                'Authorization' => 'Bearer ' . env("SUPABASE_KEY"),
-            ])->attach(
-                'file',
-                $fileContent,
-                $fileName
-            )->post(env("SUPABASE_URL")."/storage/v1/object/{furniskuy}/public/uploads/{$fileName}");
+            $response = $this->uploadImage('post', $image);
 
             // Check if the upload was successful
             if ($response->failed()) {
                 // Handle error
-                return redirect()->back()->with('error', 'Failed to upload image.');
+                Flash::error('Failed to upload image.');
+                return redirect()->back();
             }
 
             // Get the URL of the uploaded image
-            $imageUrl = $response->json('publicURL');
+            $imageUrl = $response->json('Key');
 
-            $this->inventarisRepository->model->image=$imageUrl;
+            $input['image'] = $imageUrl;
         }
 
         $inventaris = $this->inventarisRepository->create($input);
 
         Flash::success('Inventaris saved successfully.');
+
+
 
         return redirect(route('inventaris.index'));
     }
@@ -102,13 +103,20 @@ class InventarisController extends AppBaseController
     {
         $inventaris = $this->inventarisRepository->find($id);
 
+        $suppliers = Supplier::all()->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['nama']];
+        });
+
         if (empty($inventaris)) {
             Flash::error('Inventaris not found');
 
             return redirect(route('inventaris.index'));
         }
 
-        return view('inventaris.edit')->with('inventaris', $inventaris);
+        return view('inventaris.edit')->with([
+            'inventaris' => $inventaris,
+            'suppliers' => $suppliers
+        ]);
     }
 
     /**
@@ -126,39 +134,20 @@ class InventarisController extends AppBaseController
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
-            $fileContent = file_get_contents($image->getRealPath());
 
-            $deleteResponse = Http::withHeaders([
-                'Authorization' => 'Bearer ' . env("SUPABASE_KEY"),
-            ])->attach(
-                'file',
-                $fileContent,
-                $fileName
-            )->delete(env("SUPABASE_URL")."/storage/v1/object/{furniskuy}/public/uploads/{$fileName}");
+            $response = $this->uploadImage('put', $image);
 
             // Check if the upload was successful
-            if ($deleteResponse->failed()) {
+            if ($response->failed()) {
                 // Handle error
-                return redirect()->back()->with('error', 'Failed to update image.');
+                Flash::error('Failed to upload image.');
+                return redirect()->back();
             }
-
-            $updateResponse = Http::withHeaders([
-                'Content-Type' => 'application/octet-stream',
-                'Authorization' => 'Bearer ' . env("SUPABASE_KEY"),
-            ])->post(env("SUPABASE_URL")."/storage/v1/object/{furniskuy}/public/uploads/{$fileName}");
-
-            // Check if the upload was successful
-            if ($updateResponse->failed()) {
-                // Handle error
-                return redirect()->back()->with('error', 'Failed to update image.');
-            }
-
 
             // Get the URL of the uploaded image
-            $imageUrl = $updateResponse->json('publicURL');
+            $imageUrl = $response->json('Key');
 
-            $this->inventarisRepository->model->image=$imageUrl;
+            $input['image'] = $imageUrl;
         }
 
 
@@ -187,6 +176,30 @@ class InventarisController extends AppBaseController
         $this->inventarisRepository->delete($id);
 
         Flash::success('Inventaris deleted successfully.');
+
+        return redirect(route('inventaris.index'));
+    }
+
+    public function deleteImage($id)
+    {
+        $inventaris = $this->inventarisRepository->find($id);
+
+        if (empty($inventaris)) {
+            Flash::error('Inventaris not found');
+
+            return redirect(route('inventaris.index'));
+        }
+
+        $response = $this->deleteImage($inventaris->image);
+
+        // Check if the upload was successful
+        if ($response->failed()) {
+            // Handle error
+            Flash::error('Failed to delete image.');
+            return redirect()->back();
+        }
+
+        Flash::success('Inventaris image deleted successfully.');
 
         return redirect(route('inventaris.index'));
     }

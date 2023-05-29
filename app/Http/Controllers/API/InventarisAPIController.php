@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Resources\InventarisResource;
+use App\Http\Traits\UploadImageTrait;
 use Illuminate\Support\Facades\Http;
 
 /**
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Http;
 
 class InventarisAPIController extends AppBaseController
 {
+    use UploadImageTrait;
+
     /** @var  InventarisRepository */
     private $inventarisRepository;
 
@@ -102,28 +105,18 @@ class InventarisAPIController extends AppBaseController
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
-            $fileContent = file_get_contents($image->getRealPath());
 
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/octet-stream',
-                'Authorization' => 'Bearer ' . env("SUPABASE_KEY"),
-            ])->attach(
-                'file',
-                $fileContent,
-                $fileName
-            )->post(env("SUPABASE_URL")."/storage/v1/object/{furniskuy}/public/uploads/{$fileName}");
+            $response = $this->uploadImage('post', $image);
 
             // Check if the upload was successful
             if ($response->failed()) {
-                // Handle error
-                return redirect()->back()->with('error', 'Failed to upload image.');
+                return $this->sendError('Upload image failed');
             }
 
             // Get the URL of the uploaded image
-            $imageUrl = $response->json('publicURL');
+            $imageUrl = $response->json('Key');
 
-            $this->inventarisRepository->model->image=$imageUrl;
+            $input['image'] = $imageUrl;
         }
 
         $inventaris = $this->inventarisRepository->create($input);
@@ -232,39 +225,18 @@ class InventarisAPIController extends AppBaseController
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
-            $fileContent = file_get_contents($image->getRealPath());
 
-            $deleteResponse = Http::withHeaders([
-                'Authorization' => 'Bearer ' . env("SUPABASE_KEY"),
-            ])->attach(
-                'file',
-                $fileContent,
-                $fileName
-            )->delete(env("SUPABASE_URL")."/storage/v1/object/{furniskuy}/public/uploads/{$fileName}");
+            $response = $this->uploadImage('put', $image);
 
             // Check if the upload was successful
-            if ($deleteResponse->failed()) {
-                // Handle error
-                return redirect()->back()->with('error', 'Failed to update image.');
+            if ($response->failed()) {
+                return $this->sendError('Upload image failed');
             }
-
-            $updateResponse = Http::withHeaders([
-                'Content-Type' => 'application/octet-stream',
-                'Authorization' => 'Bearer ' . env("SUPABASE_KEY"),
-            ])->post(env("SUPABASE_URL")."/storage/v1/object/{furniskuy}/public/uploads/{$fileName}");
-
-            // Check if the upload was successful
-            if ($updateResponse->failed()) {
-                // Handle error
-                return redirect()->back()->with('error', 'Failed to update image.');
-            }
-
 
             // Get the URL of the uploaded image
-            $imageUrl = $updateResponse->json('publicURL');
+            $imageUrl = $response->json('Key');
 
-            $this->inventarisRepository->model->image=$imageUrl;
+            $input['image'] = $imageUrl;
         }
 
         $inventaris = $this->inventarisRepository->update($input, $id);
@@ -320,5 +292,51 @@ class InventarisAPIController extends AppBaseController
         $inventaris->delete();
 
         return $this->sendSuccess('Inventaris deleted successfully');
+    }
+
+    /**
+     * @OA\Delete(
+     *      path="/api/images/{fileName}",
+     *      operationId="deleteImage",
+     *      tags={"Images"},
+     *      summary="Delete existing image",
+     *      description="Returns success message if image deleted successfully",
+     *      security={ {"bearerAuth": {} }},
+     *      @OA\Parameter(
+     *          name="fileName",
+     *          description="Image fileName",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success message",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean",
+     *                  example=true
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Image deleted successfully"
+     *              ),
+     *          )
+     *       ),
+     * )
+     */
+    public function deleteImage($fileName)
+    {
+        $response = $this->deleteImage($fileName);
+
+        if ($response->failed()) {
+            return $this->sendError('Delete image failed');
+        }
+
+        return $this->sendSuccess('Image deleted successfully');
     }
 }

@@ -36,7 +36,10 @@ use Illuminate\Database\Eloquent\Model;
         'id_barang',
         'terbayar',
         'harga',
-        'jumlah'
+        'diskon',
+        'jumlah',
+        'status',
+        'status_transaksi'
     ];
 
     protected $casts = [
@@ -55,13 +58,28 @@ use Illuminate\Database\Eloquent\Model;
         'jumlah' => 'nullable'
     ];
 
-    public function idPegawai(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function pegawai(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\App\Models\Pegawai::class, 'id_pegawai');
     }
 
-    public function idPembeli(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function pembeli(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\App\Models\Pembeli::class, 'id_pembeli');
     }
+
+    // public function total(): int
+    // {
+    //     $total = $this->harga;
+
+    //     if ($this->diskon != 0) {
+    //         $total = $this->harga * $this->diskon;
+    //     }
+
+    //     if ($this->diskonCoret != 0) {
+    //         $total = $this->harga - $this->diskonCoret;
+    //     }
+
+    //    return $total;
+    // }
 }

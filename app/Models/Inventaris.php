@@ -4,50 +4,62 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+// OA\Property from fillable, hide id from request
 /**
  * @OA\Schema(
  *      schema="Inventaris",
  *      required={},
  *      @OA\Property(
+ *          property="id",
+ *          type="integer",
+ *          format="int32",
+ *          readOnly=true
+ *     ),
+ *      @OA\Property(
  *          property="nama",
- *          description="",
- *          readOnly=false,
- *          nullable=true,
  *          type="string",
+ *          maxLength=50
  *      ),
  *      @OA\Property(
- *          property="last_updt",
- *          description="",
- *          readOnly=false,
- *          nullable=true,
+ *          property="jumlah",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @OA\Property(
+ *          property="harga",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @OA\Property(
+ *          property="id_supplier",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @OA\Property(
+ *          property="image",
  *          type="string",
- *      )
+ *          maxLength=255
+ *      ),
  * )
- */class Inventaris extends Model
+ */ class Inventaris extends Model
 {
     public $table = 'inventaris';
+
+    public $timestamps = false;
 
     public $fillable = [
         'nama',
         'jumlah',
         'harga',
-        'last_updt',
         'id_supplier',
         'image'
-    ];
-
-    protected $casts = [
-        'nama' => 'string',
-        'last_updt' => 'string'
     ];
 
     public static array $rules = [
         'nama' => 'nullable|string|max:50',
         'jumlah' => 'nullable',
         'harga' => 'nullable',
-        'last_updt' => 'nullable|string|max:100',
         'id_supplier' => 'nullable',
-        'image' => 'nullable|string|max:100'
     ];
 
     public function supplier(): \Illuminate\Database\Eloquent\Relations\BelongsTo

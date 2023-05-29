@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "InfyOm Laravel Generator APIs",
+        "title": "Furniskuy APIs",
         "version": "1.0.0"
     },
     "servers": [
@@ -870,6 +870,54 @@
                 }
             }
         },
+        "/api/images/{fileName}": {
+            "delete": {
+                "tags": [
+                    "Images"
+                ],
+                "summary": "Delete existing image",
+                "description": "Returns success message if image deleted successfully",
+                "operationId": "deleteImage",
+                "parameters": [
+                    {
+                        "name": "fileName",
+                        "in": "path",
+                        "description": "Image fileName",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Image deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/keranjangs": {
             "get": {
                 "tags": [
@@ -1072,6 +1120,74 @@
                                         },
                                         "data": {
                                             "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/keranjangs/jumlah/{id}": {
+            "get": {
+                "tags": [
+                    "Keranjang"
+                ],
+                "summary": "jumlahKeranjang",
+                "description": "Jumlah Keranjang",
+                "operationId": "ea736ba9cb62f0618af50271ef44334e",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/keranjangs/checkout/{id}": {
+            "get": {
+                "tags": [
+                    "Keranjang"
+                ],
+                "summary": "checkoutKeranjang",
+                "description": "Checkout Keranjang",
+                "operationId": "9cdecb8d319a84f96e36bbe9cf2a3234",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "integer",
+                                            "example": 1
                                         },
                                         "message": {
                                             "type": "string"
@@ -1484,6 +1600,221 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of Pembeli",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ratings": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "getRatingList",
+                "description": "Get all Ratings",
+                "operationId": "9d1676196bd50403dd7e05adf6aa22c6",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Rating"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "createRating",
+                "description": "Create Rating",
+                "operationId": "4c8e4e2c741639862e26f7f2ef93c1fb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Rating"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Rating"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ratings/{id}": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "getRatingItem",
+                "description": "Get Rating",
+                "operationId": "f495802439c47e2479ac239f4fda26d1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Rating",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Rating"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "updateRating",
+                "description": "Update Rating",
+                "operationId": "99ea9bf1e7313494777deacbcf93782d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Rating",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Rating"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Rating"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "deleteRating",
+                "description": "Delete Rating",
+                "operationId": "d6c529be387d8c504792efa03ecd78a1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Rating",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -2019,17 +2350,30 @@
             "Inventaris": {
                 "required": [],
                 "properties": {
-                    "nama": {
-                        "description": "",
-                        "type": "string",
-                        "readOnly": false,
-                        "nullable": true
+                    "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true
                     },
-                    "last_updt": {
-                        "description": "",
+                    "nama": {
                         "type": "string",
-                        "readOnly": false,
-                        "nullable": true
+                        "maxLength": 50
+                    },
+                    "jumlah": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "harga": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "id_supplier": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "image": {
+                        "type": "string",
+                        "maxLength": 255
                     }
                 },
                 "type": "object"
@@ -2087,6 +2431,23 @@
                     "pembeli_baru": {
                         "description": "",
                         "type": "boolean",
+                        "readOnly": false,
+                        "nullable": false
+                    }
+                },
+                "type": "object"
+            },
+            "Rating": {
+                "required": [
+                    "rating",
+                    "id_user",
+                    "id_barang",
+                    "review"
+                ],
+                "properties": {
+                    "review": {
+                        "description": "",
+                        "type": "string",
                         "readOnly": false,
                         "nullable": false
                     }

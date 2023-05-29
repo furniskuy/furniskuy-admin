@@ -257,4 +257,75 @@ class KeranjangAPIController extends AppBaseController
 
         return $this->sendSuccess('Keranjang deleted successfully');
     }
+
+
+    /**
+     * @OA\Get(
+     *      path="/keranjangs/jumlah/{id}",
+     *      summary="jumlahKeranjang",
+     *      tags={"Keranjang"},
+     *      description="Jumlah Keranjang",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="integer",
+     *                  example=1
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function jumlahKeranjang($id): JsonResponse
+    {
+        $jumlah = $this->keranjangRepository->jumlahKeranjang($id);
+
+        return $this->sendResponse($jumlah, 'Jumlah Keranjang retrieved successfully');
+    }
+
+     /**
+     * @OA\Get(
+     *      path="/keranjangs/checkout/{id}",
+     *      summary="checkoutKeranjang",
+     *      tags={"Keranjang"},
+     *      description="Checkout Keranjang",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="integer",
+     *                  example=1
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function checkout($id): JsonResponse
+    {
+        $keranjang = $this->keranjangRepository->checkout($id);
+
+        return $this->sendResponse($keranjang, 'Checkout successfully');
+    }
 }

@@ -14,7 +14,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="{{  route('barang-masuks.index') }}" class="nav-link {{ Request::is('barangMasuks*') ? 'active' : '' }}">
+    <a href="{{ route('barang-masuks.index') }}" class="nav-link {{ Request::is('barangMasuks*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-sign-out-alt "></i>
         <p>Barang Masuk</p>
     </a>
@@ -64,7 +64,14 @@
 
 <li class="nav-item">
     <a href="{{ route('keranjangs.index') }}" class="nav-link {{ Request::is('keranjangs*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-home"></i>
+        <i class="nav-icon fas fa-shopping-cart"></i>
         <p>Keranjangs</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="{{ route('ratings.index') }}" class="nav-link {{ Request::is('ratings*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-star"></i>
+        <p>Ratings</p>
     </a>
 </li>

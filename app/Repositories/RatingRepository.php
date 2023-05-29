@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Inventaris;
+use App\Models\Rating;
 use App\Repositories\BaseRepository;
 
-class InventarisRepository extends BaseRepository
+class RatingRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'nama',
-        'jumlah',
-        'harga',
-        'id_supplier'
+        'rating',
+        'id_user',
+        'id_barang',
+        'review'
     ];
 
     public function getFieldsSearchable(): array
@@ -21,6 +21,6 @@ class InventarisRepository extends BaseRepository
 
     public function model(): string
     {
-        return Inventaris::class;
+        return Rating::class;
     }
 }

@@ -2,35 +2,35 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateTransaksiAPIRequest;
-use App\Http\Requests\API\UpdateTransaksiAPIRequest;
-use App\Models\Transaksi;
-use App\Repositories\TransaksiRepository;
+use App\Http\Requests\API\CreateRatingAPIRequest;
+use App\Http\Requests\API\UpdateRatingAPIRequest;
+use App\Models\Rating;
+use App\Repositories\RatingRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use App\Http\Resources\TransaksiResource;
+use App\Http\Resources\RatingResource;
 
 /**
- * Class TransaksiController
+ * Class RatingController
  */
 
-class TransaksiAPIController extends AppBaseController
+class RatingAPIController extends AppBaseController
 {
-    /** @var  TransaksiRepository */
-    private $transaksiRepository;
+    /** @var  RatingRepository */
+    private $ratingRepository;
 
-    public function __construct(TransaksiRepository $transaksiRepo)
+    public function __construct(RatingRepository $ratingRepo)
     {
-        $this->transaksiRepository = $transaksiRepo;
+        $this->ratingRepository = $ratingRepo;
     }
 
     /**
      * @OA\Get(
-     *      path="/transaksis",
-     *      summary="getTransaksiList",
-     *      tags={"Transaksi"},
-     *      description="Get all Transaksis",
+     *      path="/ratings",
+     *      summary="getRatingList",
+     *      tags={"Rating"},
+     *      description="Get all Ratings",
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -43,7 +43,7 @@ class TransaksiAPIController extends AppBaseController
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/components/schemas/Transaksi")
+     *                  @OA\Items(ref="#/components/schemas/Rating")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -55,24 +55,24 @@ class TransaksiAPIController extends AppBaseController
      */
     public function index(Request $request): JsonResponse
     {
-        $transaksis = $this->transaksiRepository->all(
+        $ratings = $this->ratingRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse(TransaksiResource::collection($transaksis), 'Transaksis retrieved successfully');
+        return $this->sendResponse(RatingResource::collection($ratings), 'Ratings retrieved successfully');
     }
 
     /**
      * @OA\Post(
-     *      path="/transaksis",
-     *      summary="createTransaksi",
-     *      tags={"Transaksi"},
-     *      description="Create Transaksi",
+     *      path="/ratings",
+     *      summary="createRating",
+     *      tags={"Rating"},
+     *      description="Create Rating",
      *      @OA\RequestBody(
      *        required=true,
-     *        @OA\JsonContent(ref="#/components/schemas/Transaksi")
+     *        @OA\JsonContent(ref="#/components/schemas/Rating")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -85,7 +85,7 @@ class TransaksiAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/components/schemas/Transaksi"
+     *                  ref="#/components/schemas/Rating"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -95,24 +95,24 @@ class TransaksiAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateTransaksiAPIRequest $request): JsonResponse
+    public function store(CreateRatingAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
-        $transaksi = $this->transaksiRepository->create($input);
+        $rating = $this->ratingRepository->create($input);
 
-        return $this->sendResponse(new TransaksiResource($transaksi), 'Transaksi saved successfully');
+        return $this->sendResponse(new RatingResource($rating), 'Rating saved successfully');
     }
 
     /**
      * @OA\Get(
-     *      path="/transaksis/{id}",
-     *      summary="getTransaksiItem",
-     *      tags={"Transaksi"},
-     *      description="Get Transaksi",
+     *      path="/ratings/{id}",
+     *      summary="getRatingItem",
+     *      tags={"Rating"},
+     *      description="Get Rating",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Transaksi",
+     *          description="id of Rating",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -130,7 +130,7 @@ class TransaksiAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/components/schemas/Transaksi"
+     *                  ref="#/components/schemas/Rating"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -142,25 +142,25 @@ class TransaksiAPIController extends AppBaseController
      */
     public function show($id): JsonResponse
     {
-        /** @var Transaksi $transaksi */
-        $transaksi = $this->transaksiRepository->find($id);
+        /** @var Rating $rating */
+        $rating = $this->ratingRepository->find($id);
 
-        if (empty($transaksi)) {
-            return $this->sendError('Transaksi not found');
+        if (empty($rating)) {
+            return $this->sendError('Rating not found');
         }
 
-        return $this->sendResponse(new TransaksiResource($transaksi), 'Transaksi retrieved successfully');
+        return $this->sendResponse(new RatingResource($rating), 'Rating retrieved successfully');
     }
 
     /**
      * @OA\Put(
-     *      path="/transaksis/{id}",
-     *      summary="updateTransaksi",
-     *      tags={"Transaksi"},
-     *      description="Update Transaksi",
+     *      path="/ratings/{id}",
+     *      summary="updateRating",
+     *      tags={"Rating"},
+     *      description="Update Rating",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Transaksi",
+     *          description="id of Rating",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -169,7 +169,7 @@ class TransaksiAPIController extends AppBaseController
      *      ),
      *      @OA\RequestBody(
      *        required=true,
-     *        @OA\JsonContent(ref="#/components/schemas/Transaksi")
+     *        @OA\JsonContent(ref="#/components/schemas/Rating")
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -182,7 +182,7 @@ class TransaksiAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  ref="#/components/schemas/Transaksi"
+     *                  ref="#/components/schemas/Rating"
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -192,31 +192,31 @@ class TransaksiAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdateTransaksiAPIRequest $request): JsonResponse
+    public function update($id, UpdateRatingAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
-        /** @var Transaksi $transaksi */
-        $transaksi = $this->transaksiRepository->find($id);
+        /** @var Rating $rating */
+        $rating = $this->ratingRepository->find($id);
 
-        if (empty($transaksi)) {
-            return $this->sendError('Transaksi not found');
+        if (empty($rating)) {
+            return $this->sendError('Rating not found');
         }
 
-        $transaksi = $this->transaksiRepository->update($input, $id);
+        $rating = $this->ratingRepository->update($input, $id);
 
-        return $this->sendResponse(new TransaksiResource($transaksi), 'Transaksi updated successfully');
+        return $this->sendResponse(new RatingResource($rating), 'Rating updated successfully');
     }
 
     /**
      * @OA\Delete(
-     *      path="/transaksis/{id}",
-     *      summary="deleteTransaksi",
-     *      tags={"Transaksi"},
-     *      description="Delete Transaksi",
+     *      path="/ratings/{id}",
+     *      summary="deleteRating",
+     *      tags={"Rating"},
+     *      description="Delete Rating",
      *      @OA\Parameter(
      *          name="id",
-     *          description="id of Transaksi",
+     *          description="id of Rating",
      *           @OA\Schema(
      *             type="integer"
      *          ),
@@ -246,19 +246,15 @@ class TransaksiAPIController extends AppBaseController
      */
     public function destroy($id): JsonResponse
     {
-        /** @var Transaksi $transaksi */
-        $transaksi = $this->transaksiRepository->find($id);
+        /** @var Rating $rating */
+        $rating = $this->ratingRepository->find($id);
 
-        if (empty($transaksi)) {
-            return $this->sendError('Transaksi not found');
+        if (empty($rating)) {
+            return $this->sendError('Rating not found');
         }
 
-        if ($transaksi->status != 0) {
-            return $this->sendError('Tidak bisa membatalkan transaksi yang sudah diproses silahkan hubungi call center kami') ;
-        }
+        $rating->delete();
 
-        $transaksi->delete();
-
-        return $this->sendSuccess('Transaksi deleted successfully');
+        return $this->sendSuccess('Rating deleted successfully');
     }
 }

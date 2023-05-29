@@ -1,7 +1,17 @@
 <!-- Nama Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nama', 'Nama:') !!}
-    {!! Form::text('nama', null, ['class' => 'form-control', 'maxlength' => 50, 'maxlength' => 50, 'maxlength' => 50]) !!}
+    {!! Form::text('nama', null, [
+        'class' => 'form-control',
+        'maxlength' => 50,
+        'maxlength' => 50,
+        'maxlength' => 50,
+    ]) !!}
+</div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('image', 'Image') !!}
+    {!! Form::file('image', ['id' => 'image', 'accept' => '.jpeg , .png , .svg']) !!}
 </div>
 
 <!-- Jumlah Field -->
@@ -16,14 +26,8 @@
     {!! Form::number('harga', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Last Updt Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('last_updt', 'Last Updt:') !!}
-    {!! Form::text('last_updt', null, ['class' => 'form-control', 'maxlength' => 100, 'maxlength' => 100, 'maxlength' => 100]) !!}
-</div>
-
 <!-- Id Supplier Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_supplier', 'Id Supplier:') !!}
-    {!! Form::number('id_supplier', null, ['class' => 'form-control']) !!}
+    {!! Form::label('id_supplier', 'Supplier:') !!}
+    {!! Form::select('id_supplier', $suppliers, null, ['class' => 'form-control']) !!}
 </div>
