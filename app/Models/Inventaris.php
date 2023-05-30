@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-// OA\Property from fillable, hide id from request
 /**
  * @OA\Schema(
  *      schema="Inventaris",
@@ -38,7 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  *      @OA\Property(
  *          property="image",
  *          type="string",
- *          maxLength=255
+ *          format="binary"
  *      ),
  * )
  */ class Inventaris extends Model

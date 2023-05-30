@@ -76,7 +76,10 @@ class InventarisAPIController extends AppBaseController
      *      description="Create Inventaris",
      *      @OA\RequestBody(
      *        required=true,
-     *        @OA\JsonContent(ref="#/components/schemas/Inventaris")
+     *        @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(ref="#/components/schemas/Inventaris")
+     *        )
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -189,7 +192,10 @@ class InventarisAPIController extends AppBaseController
      *      ),
      *      @OA\RequestBody(
      *        required=true,
-     *        @OA\JsonContent(ref="#/components/schemas/Inventaris")
+     *        @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(ref="#/components/schemas/Inventaris")
+     *        )
      *      ),
      *      @OA\Response(
      *          response=200,

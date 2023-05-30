@@ -700,7 +700,7 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "$ref": "#/components/schemas/Inventaris"
                             }
@@ -2373,7 +2373,7 @@
                     },
                     "image": {
                         "type": "string",
-                        "maxLength": 255
+                        "format": "binary"
                     }
                 },
                 "type": "object"
