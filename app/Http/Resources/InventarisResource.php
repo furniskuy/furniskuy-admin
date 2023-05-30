@@ -17,6 +17,7 @@ class InventarisResource extends JsonResource
         return [
             'id' => $this->id,
             'nama' => $this->nama,
+            'image' => $this->image,
             'jumlah' => $this->jumlah,
             'harga' => $this->harga,
             'id_supplier' => $this->id_supplier,
