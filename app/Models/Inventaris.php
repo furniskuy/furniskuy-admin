@@ -54,6 +54,8 @@ use Illuminate\Database\Eloquent\Model;
         'image'
     ];
 
+    public $with = array('supplier');
+
     public static array $rules = [
         'nama' => 'nullable|string|max:50',
         'jumlah' => 'nullable',
@@ -63,7 +65,7 @@ use Illuminate\Database\Eloquent\Model;
 
     public function supplier(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Supplier::class, 'id_supplier');
+        return $this->belongsTo(\App\Models\Supplier::class, 'id_supplier', 'id');
     }
 
     public function barangKeluars(): \Illuminate\Database\Eloquent\Relations\HasMany

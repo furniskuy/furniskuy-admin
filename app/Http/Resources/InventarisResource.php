@@ -20,6 +20,7 @@ class InventarisResource extends JsonResource
             'jumlah' => $this->jumlah,
             'harga' => $this->harga,
             'id_supplier' => $this->id_supplier,
+            'supplier' => $this->supplier,
         ];
     }
 }

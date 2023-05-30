@@ -23,7 +23,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [App\Http\Controllers\API\AuthController::class, 'login']);
     Route::post('signup', [App\Http\Controllers\API\AuthController::class, 'signup']);
 
-    Route::group(['middleware' => 'auth:sanctum'], function() {
+    Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
         Route::get('user', [App\Http\Controllers\API\AuthController::class, 'user']);
     });
@@ -54,10 +54,10 @@ Route::resource('suppliers', App\Http\Controllers\API\SupplierAPIController::cla
 Route::resource('transaksis', App\Http\Controllers\API\TransaksiAPIController::class)
     ->except(['create', 'edit']);
 
-Route::group(['prefix' => 'keranjang'], function () {
+Route::group(['prefix' => 'keranjangs'], function () {
     Route::resource('/', App\Http\Controllers\API\KeranjangAPIController::class)
         ->except(['create', 'edit']);
-    Route::post('/jumlah/{id}', [App\Http\Controllers\API\KeranjangAPIController::class, 'jumlahKeranjang']);
+    Route::get('/user/{id}', [App\Http\Controllers\API\KeranjangAPIController::class, 'keranjangUser']);
     Route::post('/checkout', [App\Http\Controllers\API\KeranjangAPIController::class, 'checkout']);
 });
 

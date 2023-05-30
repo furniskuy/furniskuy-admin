@@ -31,6 +31,36 @@ class BarangKeluarAPIController extends AppBaseController
      *      summary="getBarangKeluarList",
      *      tags={"BarangKeluar"},
      *      description="Get all BarangKeluars",
+     *      @OA\Parameter(
+     *          name="skip",
+     *          in="query",
+     *          description="skip",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int32"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="limit",
+     *          in="query",
+     *          description="limit",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int32"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="search",
+     *          in="query",
+     *          description="search",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="string",
+     *              format="int32"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",

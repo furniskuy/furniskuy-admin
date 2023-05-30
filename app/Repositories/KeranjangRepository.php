@@ -25,9 +25,9 @@ class KeranjangRepository extends BaseRepository
         return Keranjang::class;
     }
 
-    public function jumlahKeranjang($id)
+    public function keranjangUser($id)
     {
-        return $this->model->where('id_pembeli', $id)->count();
+        return $this->model->where('id_pembeli', $id)->get();
     }
 
     // create transaksi with keranjang

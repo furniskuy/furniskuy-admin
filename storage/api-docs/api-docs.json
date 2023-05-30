@@ -18,6 +18,38 @@
                 "summary": "getBarangKeluarList",
                 "description": "Get all BarangKeluars",
                 "operationId": "75c59269ac55dd545c5b117ed8578861",
+                "parameters": [
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "skip",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "limit",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "int32"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -663,6 +695,38 @@
                 "summary": "getInventarisList",
                 "description": "Get all Inventaris",
                 "operationId": "365d64595728b205925bdc998007f05a",
+                "parameters": [
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "skip",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "limit",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "int32"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -796,7 +860,7 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "$ref": "#/components/schemas/Inventaris"
                             }
@@ -926,6 +990,38 @@
                 "summary": "getKeranjangList",
                 "description": "Get all Keranjangs",
                 "operationId": "0ef5da25990af4ba372e372baf4b3fc6",
+                "parameters": [
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "skip",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "limit",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "int32"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -1133,14 +1229,25 @@
                 }
             }
         },
-        "/keranjangs/jumlah/{id}": {
+        "/keranjangs/user/{id}": {
             "get": {
                 "tags": [
                     "Keranjang"
                 ],
-                "summary": "jumlahKeranjang",
-                "description": "Jumlah Keranjang",
-                "operationId": "ea736ba9cb62f0618af50271ef44334e",
+                "summary": "kerangjangUser",
+                "description": "Keranjang User",
+                "operationId": "904eaace7f1a6fbb1addd4f05fc36a36",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Keranjang",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -1152,8 +1259,10 @@
                                             "type": "boolean"
                                         },
                                         "data": {
-                                            "type": "integer",
-                                            "example": 1
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Keranjang"
+                                            }
                                         },
                                         "message": {
                                             "type": "string"
@@ -1175,6 +1284,17 @@
                 "summary": "checkoutKeranjang",
                 "description": "Checkout Keranjang",
                 "operationId": "9cdecb8d319a84f96e36bbe9cf2a3234",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Keranjang",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -1186,8 +1306,7 @@
                                             "type": "boolean"
                                         },
                                         "data": {
-                                            "type": "integer",
-                                            "example": 1
+                                            "$ref": "#/components/schemas/Keranjang"
                                         },
                                         "message": {
                                             "type": "string"
@@ -2379,12 +2498,40 @@
                 "type": "object"
             },
             "Keranjang": {
-                "required": [
-                    "id_barang",
-                    "id_pembeli",
-                    "harga",
-                    "jumlah"
-                ]
+                "required": [],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true
+                    },
+                    "id_barang": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "id_pembeli": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "harga": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "jumlah": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "barang": {
+                        "type": "object",
+                        "readOnly": true,
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/Inventaris"
+                            }
+                        ]
+                    }
+                },
+                "type": "object"
             },
             "Pegawai": {
                 "required": [],

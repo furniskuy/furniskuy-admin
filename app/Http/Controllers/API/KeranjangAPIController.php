@@ -31,6 +31,36 @@ class KeranjangAPIController extends AppBaseController
      *      summary="getKeranjangList",
      *      tags={"Keranjang"},
      *      description="Get all Keranjangs",
+     *      @OA\Parameter(
+     *          name="skip",
+     *          in="query",
+     *          description="skip",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int32"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="limit",
+     *          in="query",
+     *          description="limit",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int32"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="search",
+     *          in="query",
+     *          description="search",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="string",
+     *              format="int32"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -261,10 +291,19 @@ class KeranjangAPIController extends AppBaseController
 
     /**
      * @OA\Get(
-     *      path="/keranjangs/jumlah/{id}",
-     *      summary="jumlahKeranjang",
+     *      path="/keranjangs/user/{id}",
+     *      summary="kerangjangUser",
      *      tags={"Keranjang"},
-     *      description="Jumlah Keranjang",
+     *      description="Keranjang User",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="id of Keranjang",
+     *           @OA\Schema(
+     *             type="integer"
+     *          ),
+     *          required=true,
+     *          in="path"
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -276,8 +315,8 @@ class KeranjangAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  type="integer",
-     *                  example=1
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/Keranjang")
      *              ),
      *              @OA\Property(
      *                  property="message",
@@ -287,19 +326,28 @@ class KeranjangAPIController extends AppBaseController
      *      )
      * )
      */
-    public function jumlahKeranjang($id): JsonResponse
+    public function keranjangUser($id): JsonResponse
     {
-        $jumlah = $this->keranjangRepository->jumlahKeranjang($id);
+        $keranjang = $this->keranjangRepository->keranjangUser($id);
 
-        return $this->sendResponse($jumlah, 'Jumlah Keranjang retrieved successfully');
+        return $this->sendResponse($keranjang, 'Keranjang retrieved successfully');
     }
 
-     /**
+    /**
      * @OA\Get(
      *      path="/keranjangs/checkout/{id}",
      *      summary="checkoutKeranjang",
      *      tags={"Keranjang"},
      *      description="Checkout Keranjang",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="id of Keranjang",
+     *           @OA\Schema(
+     *             type="integer"
+     *          ),
+     *          required=true,
+     *          in="path"
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -311,8 +359,7 @@ class KeranjangAPIController extends AppBaseController
      *              ),
      *              @OA\Property(
      *                  property="data",
-     *                  type="integer",
-     *                  example=1
+     *                  ref="#/components/schemas/Keranjang"
      *              ),
      *              @OA\Property(
      *                  property="message",
