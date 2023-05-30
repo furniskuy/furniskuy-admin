@@ -23,4 +23,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www
 
+ARG COMPOSER_ALLOW_SUPERUSER=1
+
 RUN composer install --no-interaction
