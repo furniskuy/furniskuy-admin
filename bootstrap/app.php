@@ -41,12 +41,6 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
-# new storage path
-$path_storage = "/tmp";
-
-# override already $app->storagePath using the function
-$app->useStoragePath($path_storage);
-
 /*
 |--------------------------------------------------------------------------
 | Return The Application
