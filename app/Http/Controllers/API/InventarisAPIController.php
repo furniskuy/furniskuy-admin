@@ -139,7 +139,7 @@ class InventarisAPIController extends AppBaseController
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            $response = $this->uploadImage('post', $image);
+            $response = $this->uploadImage($image);
 
             // Check if the upload was successful
             if ($response->failed()) {
@@ -262,7 +262,7 @@ class InventarisAPIController extends AppBaseController
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            $response = $this->uploadImage('put', $image);
+            $response = $this->uploadImage($image, $inventaris->image);
 
             // Check if the upload was successful
             if ($response->failed()) {

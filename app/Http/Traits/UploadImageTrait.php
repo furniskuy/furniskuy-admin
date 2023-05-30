@@ -10,12 +10,18 @@ trait UploadImageTrait
 
     /**
      * Upload image to Supabase Storage
-     * @param string $method
      * @param UploadedFile|UploadedFile[]|array|null $image
+     * @param string $fileName
      */
-    public function uploadImage($method, $image)
+    public function uploadImage($image, $fileName = null)
     {
-        $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+        $method = 'put';
+
+        if (is_null($fileName)) {
+            $method = 'post';
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+        }
+
         $fileContent = file_get_contents($image->getRealPath());
 
         $response = Http::withHeaders([

@@ -11,6 +11,12 @@
 
 <div class="form-group col-sm-6">
     {!! Form::label('image', 'Image') !!}
+
+    @if (isset($inventaris) && $inventaris->image)
+        <img src="{{ env('SUPABASE_IMAGE_URL') . $inventaris->image }}" width="200" height="200"
+            alt="{{ $inventaris->nama }}">
+    @endif
+
     {!! Form::file('image', ['id' => 'image', 'accept' => '.jpeg , .png , .svg']) !!}
 </div>
 

@@ -56,7 +56,7 @@ class InventarisController extends AppBaseController
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            $response = $this->uploadImage('post', $image);
+            $response = $this->uploadImage($image);
 
             // Check if the upload was successful
             if ($response->failed()) {
@@ -124,6 +124,7 @@ class InventarisController extends AppBaseController
      */
     public function update($id, UpdateInventarisRequest $request)
     {
+        $input = $request->all();
         $inventaris = $this->inventarisRepository->find($id);
 
         if (empty($inventaris)) {
@@ -135,7 +136,7 @@ class InventarisController extends AppBaseController
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            $response = $this->uploadImage('put', $image);
+            $response = $this->uploadImage($image, $inventaris->image);
 
             // Check if the upload was successful
             if ($response->failed()) {
@@ -151,7 +152,7 @@ class InventarisController extends AppBaseController
         }
 
 
-        $inventaris = $this->inventarisRepository->update($request->all(), $id);
+        $inventaris = $this->inventarisRepository->update($input, $id);
 
         Flash::success('Inventaris updated successfully.');
 
