@@ -3,6 +3,7 @@
         <table class="table" id="pegawais-table">
             <thead>
             <tr>
+                <th>Id</th>
                 <th>Tanggal Lahir</th>
                 <th>Jenis Kelamin</th>
                 <th>Nama</th>
@@ -12,6 +13,7 @@
             <tbody>
             @foreach($pegawais as $pegawai)
                 <tr>
+                    <td>{{ $pegawai->id }}</td>
                     <td>{{ $pegawai->tanggal_lahir }}</td>
                     <td>{{ $pegawai->jenis_kelamin }}</td>
                     <td>{{ $pegawai->nama }}</td>

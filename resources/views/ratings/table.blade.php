@@ -3,6 +3,7 @@
         <table class="table" id="ratings-table">
             <thead>
             <tr>
+                <th>Id</th>
                 <th>Rating</th>
                 <th>Id User</th>
                 <th>Id Barang</th>
@@ -13,6 +14,7 @@
             <tbody>
             @foreach($ratings as $rating)
                 <tr>
+                    <td>{{ $rating->Id }}</td>
                     <td>{{ $rating->rating }}</td>
                     <td>{{ $rating->id_user }}</td>
                     <td>{{ $rating->id_barang }}</td>

@@ -3,6 +3,7 @@
         <table class="table" id="inventaris-table">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Nama</th>
                     <th>Jumlah</th>
                     <th>Harga</th>
@@ -13,6 +14,7 @@
             <tbody>
                 @foreach ($inventaris as $inventari)
                     <tr>
+                        <td>{{ $inventari->id }}</td>
                         <td>{{ $inventari->nama }}</td>
                         <td>{{ $inventari->jumlah }}</td>
                         <td>{{ $inventari->harga }}</td>

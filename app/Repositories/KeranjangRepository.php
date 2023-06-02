@@ -27,7 +27,7 @@ class KeranjangRepository extends BaseRepository
 
     public function keranjangUser($id)
     {
-        return $this->model->where('id_pembeli', $id)->get();
+        return $this->model->where('id_pembeli', $id)->oldest()->get();
     }
 
     // create transaksi with keranjang

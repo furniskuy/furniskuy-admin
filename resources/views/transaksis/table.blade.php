@@ -3,6 +3,7 @@
         <table class="table" id="transaksis-table">
             <thead>
             <tr>
+                <th>Id</th>
                 <th>Id Pegawai</th>
                 <th>Id Kasir</th>
                 <th>Id Pembeli</th>
@@ -17,6 +18,7 @@
             <tbody>
             @foreach($transaksis as $transaksi)
                 <tr>
+                    <td>{{ $transaksi->id }}</td>
                     <td>{{ $transaksi->id_pegawai }}</td>
                     <td>{{ $transaksi->id_kasir }}</td>
                     <td>{{ $transaksi->id_pembeli }}</td>
