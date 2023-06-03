@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Model;
  *      schema="Pembeli",
  *      required={"pembeli_baru"},
  *      @OA\Property(
+ *         property="id",
+ *         type="integer",
+ *         format="int32",
+ *         readOnly=true
+ *      ),
+ *      @OA\Property(
  *          property="nama",
  *          description="",
  *          readOnly=false,
@@ -30,11 +36,12 @@ use Illuminate\Database\Eloquent\Model;
  *          type="boolean",
  *      )
  * )
- */class Pembeli extends Model
+ */ class Pembeli extends Model
 {
     public $table = 'pembeli';
 
     public $fillable = [
+        'id',
         'nama',
         'jenis_kelamin',
         'pembeli_baru'
@@ -47,6 +54,7 @@ use Illuminate\Database\Eloquent\Model;
     ];
 
     public static array $rules = [
+        'id' => 'integer',
         'nama' => 'nullable|string|max:50',
         'jenis_kelamin' => 'nullable|string|max:1',
         'pembeli_baru' => 'required|boolean'

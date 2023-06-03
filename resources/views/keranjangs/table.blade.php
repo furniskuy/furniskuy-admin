@@ -6,7 +6,6 @@
                     <th>Id</th>
                     <th>Id Barang</th>
                     <th>Id Pembeli</th>
-                    <th>Harga</th>
                     <th>Jumlah</th>
                     <th colspan="3">Action</th>
                 </tr>
@@ -17,7 +16,6 @@
                         <td>{{ $keranjang->id }}</td>
                         <td>{{ $keranjang->id_barang }}</td>
                         <td>{{ $keranjang->id_pembeli }}</td>
-                        <td>{{ $keranjang->harga }}</td>
                         <td>{{ $keranjang->jumlah }}</td>
                         <td style="width: 120px">
                             {!! Form::open(['route' => ['keranjangs.destroy', $keranjang->id], 'method' => 'delete']) !!}

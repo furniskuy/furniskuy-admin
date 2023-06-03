@@ -3,14 +3,13 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return redirect('/admin');
-});
+Route::redirect('/', '/admin');
 
 Auth::routes();
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
     Route::resource('barang-keluars', App\Http\Controllers\BarangKeluarController::class);
     Route::resource('barang-masuks', App\Http\Controllers\BarangMasukController::class);
     Route::resource('ekspedisis', App\Http\Controllers\EkspedisiController::class);

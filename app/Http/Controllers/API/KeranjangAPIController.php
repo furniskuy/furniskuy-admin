@@ -128,8 +128,10 @@ class KeranjangAPIController extends AppBaseController
     public function store(CreateKeranjangAPIRequest $request): JsonResponse
     {
         $input = $request->all();
+        $input['id_pembeli'] = $request->user()->id;
 
-        $keranjang = $this->keranjangRepository->create($input);
+
+        $keranjang = $this->keranjangRepository->createOrAdd($input);
 
         return $this->sendResponse(new KeranjangResource($keranjang), 'Keranjang saved successfully');
     }
@@ -291,19 +293,10 @@ class KeranjangAPIController extends AppBaseController
 
     /**
      * @OA\Get(
-     *      path="/keranjangs/user/{id}",
+     *      path="/keranjangs/user",
      *      summary="kerangjangUser",
      *      tags={"Keranjang"},
      *      description="Keranjang User",
-     *      @OA\Parameter(
-     *          name="id",
-     *          description="id of Keranjang",
-     *           @OA\Schema(
-     *             type="integer"
-     *          ),
-     *          required=true,
-     *          in="path"
-     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -326,9 +319,9 @@ class KeranjangAPIController extends AppBaseController
      *      )
      * )
      */
-    public function keranjangUser($id): JsonResponse
+    public function keranjangUser(Request $request): JsonResponse
     {
-        $keranjang = $this->keranjangRepository->keranjangUser($id);
+        $keranjang = $this->keranjangRepository->keranjangUser($request->user()->id);
 
         return $this->sendResponse($keranjang, 'Keranjang retrieved successfully');
     }

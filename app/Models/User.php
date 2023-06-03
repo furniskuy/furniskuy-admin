@@ -8,6 +8,73 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @OA\Schema(
+ *     schema="User",
+ *     required={},
+ *     @OA\Property(
+ *         property="id",
+ *         type="integer",
+ *         format="int32",
+ *         readOnly=true
+ *     ),
+ *     @OA\Property(
+ *         property="name",
+ *         type="string"
+ *     ),
+ *     @OA\Property(
+ *         property="email",
+ *         type="string"
+ *     ),
+ *     @OA\Property(
+ *         property="email_verified_at",
+ *         type="string",
+ *         format="date-time",
+ *         readOnly=true
+ *     ),
+ *     @OA\Property(
+ *         property="password",
+ *         type="string",
+ *         format="password"
+ *     ),
+ *     @OA\Property(
+ *         property="remember_token",
+ *         type="string"
+ *     ),
+ *     @OA\Property(
+ *         property="created_at",
+ *         type="string",
+ *         format="date-time",
+ *         readOnly=true
+ *     ),
+ *     @OA\Property(
+ *         property="updated_at",
+ *         type="string",
+ *         format="date-time",
+ *         readOnly=true
+ *     ),
+ *     @OA\Property(
+ *         property="pembeli",
+ *         type="object",
+ *         readOnly=true,
+ *         allOf={
+ *             @OA\Schema(
+ *                 ref="#/components/schemas/Pembeli"
+ *             )
+ *         }
+ *     ),
+ *     @OA\Property(
+ *         property="pegawai",
+ *         type="object",
+ *         readOnly=true,
+ *         allOf={
+ *             @OA\Schema(
+ *                 ref="#/components/schemas/Pegawai"
+ *             )
+ *         }
+ *     )
+ * )
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;

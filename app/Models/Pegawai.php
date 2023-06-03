@@ -9,6 +9,19 @@ use Illuminate\Database\Eloquent\Model;
  *      schema="Pegawai",
  *      required={},
  *      @OA\Property(
+ *         property="id",
+ *         type="integer",
+ *         format="int32",
+ *         readOnly=true
+ *      ),
+ *      @OA\Property(
+ *          property="nama",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string",
+ *      ),,
+ *      @OA\Property(
  *          property="tanggal_lahir",
  *          description="",
  *          readOnly=false,
@@ -22,23 +35,17 @@ use Illuminate\Database\Eloquent\Model;
  *          readOnly=false,
  *          nullable=true,
  *          type="string",
- *      ),
- *      @OA\Property(
- *          property="nama",
- *          description="",
- *          readOnly=false,
- *          nullable=true,
- *          type="string",
  *      )
  * )
- */class Pegawai extends Model
+ */ class Pegawai extends Model
 {
     public $table = 'pegawai';
 
     public $fillable = [
+        'id',
+        'nama',
         'tanggal_lahir',
         'jenis_kelamin',
-        'nama'
     ];
 
     protected $casts = [
@@ -48,9 +55,10 @@ use Illuminate\Database\Eloquent\Model;
     ];
 
     public static array $rules = [
+        'id' => 'integer',
+        'nama' => 'nullable|string|max:50',
         'tanggal_lahir' => 'nullable',
         'jenis_kelamin' => 'nullable|string|max:1',
-        'nama' => 'nullable|string|max:50'
     ];
 
     public function ekspedisis(): \Illuminate\Database\Eloquent\Relations\HasMany

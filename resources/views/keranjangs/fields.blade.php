@@ -10,12 +10,6 @@
     {!! Form::number('id_pembeli', null, ['class' => 'form-control', 'required']) !!}
 </div>
 
-<!-- Harga Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('harga', 'Harga:') !!}
-    {!! Form::number('harga', null, ['class' => 'form-control', 'required']) !!}
-</div>
-
 <!-- Jumlah Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('jumlah', 'Jumlah:') !!}

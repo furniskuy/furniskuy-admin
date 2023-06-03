@@ -25,11 +25,6 @@ use Illuminate\Database\Eloquent\Model;
  *     format="int32"
  *   ),
  *   @OA\Property(
- *     property="harga",
- *     type="integer",
- *     format="int32"
- *   ),
- *   @OA\Property(
  *     property="jumlah",
  *     type="integer",
  *     format="int32"
@@ -53,7 +48,6 @@ class Keranjang extends Model
     public $fillable = [
         'id_barang',
         'id_pembeli',
-        'harga',
         'jumlah'
     ];
 
@@ -61,8 +55,6 @@ class Keranjang extends Model
 
     public static array $rules = [
         'id_barang' => 'required',
-        'id_pembeli' => 'required',
-        'harga' => 'required',
         'jumlah' => 'required'
     ];
 

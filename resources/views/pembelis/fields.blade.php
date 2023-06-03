@@ -1,13 +1,28 @@
+<div class="form-group col-sm-6">
+    {!! Form::label('id', 'Id:') !!}
+    {!! Form::number('id', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Nama Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nama', 'Nama:') !!}
-    {!! Form::text('nama', null, ['class' => 'form-control', 'maxlength' => 50, 'maxlength' => 50, 'maxlength' => 50]) !!}
+    {!! Form::text('nama', null, [
+        'class' => 'form-control',
+        'maxlength' => 50,
+        'maxlength' => 50,
+        'maxlength' => 50,
+    ]) !!}
 </div>
 
 <!-- Jenis Kelamin Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('jenis_kelamin', 'Jenis Kelamin:') !!}
-    {!! Form::text('jenis_kelamin', null, ['class' => 'form-control', 'maxlength' => 1, 'maxlength' => 1, 'maxlength' => 1]) !!}
+    {!! Form::text('jenis_kelamin', null, [
+        'class' => 'form-control',
+        'maxlength' => 1,
+        'maxlength' => 1,
+        'maxlength' => 1,
+    ]) !!}
 </div>
 
 <!-- Pembeli Baru Field -->

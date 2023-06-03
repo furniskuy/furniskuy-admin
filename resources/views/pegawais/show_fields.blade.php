@@ -1,3 +1,16 @@
+<div class="col-sm-12">
+    {!! Form::label('id', 'Id:') !!}
+    <p>{{ $pembeli->id }}</p>
+</div>
+
+
+<!-- Nama Field -->
+<div class="col-sm-12">
+    {!! Form::label('nama', 'Nama:') !!}
+    <p>{{ $pegawai->nama }}</p>
+</div>
+
+
 <!-- Tanggal Lahir Field -->
 <div class="col-sm-12">
     {!! Form::label('tanggal_lahir', 'Tanggal Lahir:') !!}
@@ -9,10 +22,3 @@
     {!! Form::label('jenis_kelamin', 'Jenis Kelamin:') !!}
     <p>{{ $pegawai->jenis_kelamin }}</p>
 </div>
-
-<!-- Nama Field -->
-<div class="col-sm-12">
-    {!! Form::label('nama', 'Nama:') !!}
-    <p>{{ $pegawai->nama }}</p>
-</div>
-

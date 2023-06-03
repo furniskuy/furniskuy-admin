@@ -1,3 +1,8 @@
+<div class="col-sm-12">
+    {!! Form::label('id', 'Id:') !!}
+    <p>{{ $pembeli->id }}</p>
+</div>
+
 <!-- Nama Field -->
 <div class="col-sm-12">
     {!! Form::label('nama', 'Nama:') !!}
@@ -15,4 +20,3 @@
     {!! Form::label('pembeli_baru', 'Pembeli Baru:') !!}
     <p>{{ $pembeli->pembeli_baru }}</p>
 </div>
-

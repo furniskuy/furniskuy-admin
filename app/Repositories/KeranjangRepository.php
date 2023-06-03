@@ -25,6 +25,18 @@ class KeranjangRepository extends BaseRepository
         return Keranjang::class;
     }
 
+    public function createOrAdd($data)
+    {
+        $keranjang = $this->model->where('id_pembeli', $data['id_pembeli'])->where('id_barang', $data['id_barang'])->first();
+        if ($keranjang) {
+            $keranjang->jumlah += $data['jumlah'];
+            $keranjang->save();
+            return $keranjang;
+        } else {
+            return $this->create($data);
+        }
+    }
+
     public function keranjangUser($id)
     {
         return $this->model->where('id_pembeli', $id)->oldest()->get();
@@ -36,7 +48,7 @@ class KeranjangRepository extends BaseRepository
         $keranjang = $this->model->where('id_pembeli', $id)->get();
         $total = 0;
         foreach ($keranjang as $item) {
-            $total += $item->harga;
+            $total += $item->barang->harga;
         }
         $transaksi = [
             'id_pembeli' => $id,

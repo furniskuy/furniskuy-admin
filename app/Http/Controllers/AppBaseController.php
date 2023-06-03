@@ -10,6 +10,15 @@ use InfyOm\Generator\Utils\ResponseUtil;
  *   title="Furniskuy APIs",
  *   version="1.0.0"
  * )
+ * @OA\OpenApi(
+ *   security={{"bearerAuth": {}}}
+ * )
+ *
+ * @OA\SecurityScheme(
+ *   securityScheme="bearerAuth",
+ *   type="http",
+ *   scheme="bearer"
+ * )
  * This class should be parent class for other API controllers
  * Class AppBaseController
  */
