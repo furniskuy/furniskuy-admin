@@ -149,7 +149,7 @@ class TransaksiAPIController extends AppBaseController
             return $this->sendError('Transaksi not found');
         }
 
-        return $this->sendResponse(new TransaksiResource($transaksi), 'Transaksi retrieved successfully');
+        return $this->sendResponse($transaksi, 'Transaksi retrieved successfully');
     }
 
     /**
@@ -257,6 +257,7 @@ class TransaksiAPIController extends AppBaseController
             return $this->sendError('Tidak bisa membatalkan transaksi yang sudah diproses silahkan hubungi call center kami');
         }
 
+        $transaksi->listBarang()->sync([]);
         $transaksi->delete();
 
         return $this->sendSuccess('Transaksi deleted successfully');

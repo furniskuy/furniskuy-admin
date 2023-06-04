@@ -98,8 +98,5 @@ use Illuminate\Database\Eloquent\Model;
         'no_hp' => 'required|string|max:13',
         'alamat' => 'required|string|max:255',
         'tanggal_lahir' => 'required',
-        'pembeli_baru' => 'required|boolean',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable'
     ];
 }

@@ -125,4 +125,30 @@ class TransaksiController extends AppBaseController
 
         return redirect(route('transaksis.index'));
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $transaksi = $this->transaksiRepository->find($id);
+
+        if (empty($transaksi)) {
+            Flash::error('Transaksi not found');
+
+            return redirect(route('transaksis.index'));
+        }
+
+        $transaksi->status = $request->status;
+        $transaksi->status_transaksi = $transaksi->getStatus($request->status);
+
+        if ($request->status == 2) {
+            $transaksi->waktu_pembayaran = now();
+        } elseif ($request->status == 3) {
+            $transaksi->waktu_pengiriman = now();
+        }
+
+        $transaksi->save();
+
+        Flash::success('Transaksi updated successfully.');
+
+        return redirect(route('transaksis.index'));
+    }
 }

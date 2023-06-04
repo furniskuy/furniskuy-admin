@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\AppBaseController;
+use App\Models\Pembeli;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -156,8 +157,26 @@ class AuthController extends AppBaseController
      */
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
+        $request->user()->currentAccessToken()->delete();
 
         return $this->sendResponse([], 'User logged out successfully.');
+    }
+
+    // create Pembeli for user and if it already exist update it
+    public function profile(Request $request)
+    {
+        $user = $request->user();
+        $input = $request->all();
+        unset($input['email']);
+
+        if (!!$user->profile) {
+            $user->profile()->update($input);
+        } else {
+            $user->profile()->create($input);
+        }
+
+        $user->refresh();
+
+        return $this->sendResponse($user, 'Profile updated successfully.');
     }
 }

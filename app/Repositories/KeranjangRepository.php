@@ -41,7 +41,7 @@ class KeranjangRepository extends BaseRepository
         return $this->model->where('id_pembeli', $id)->latest()->get();
     }
 
-    public function checkout($id)
+    public function checkout($id, $metode_pembayaran)
     {
         $keranjang = $this->model->where('id_pembeli', $id)->get();
         $total = 0;
@@ -53,6 +53,7 @@ class KeranjangRepository extends BaseRepository
             'total_harga' => $total,
             'total_barang' => $keranjang->count(),
             'tenggat_waktu' => now()->addDays(1),
+            'metode_pembayaran' => $metode_pembayaran,
         ];
 
         $transaksiBarang = $keranjang->mapWithKeys(function ($item) {

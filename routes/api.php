@@ -22,7 +22,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('signup', [App\Http\Controllers\API\AuthController::class, 'signup']);
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
-        Route::get('logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
+        Route::post('logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
+        Route::post('profile', [App\Http\Controllers\API\AuthController::class, 'profile']);
         Route::get('user', [App\Http\Controllers\API\AuthController::class, 'user']);
     });
 });
@@ -46,7 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('inventaris', App\Http\Controllers\API\InventarisAPIController::class)
         ->except(['create', 'edit']);
 
-    Route::resource('metode-pembayarans', App\Http\Controllers\API\MetodePembayaranAPIController::class)
+    Route::resource('metode-pembayaran', App\Http\Controllers\API\MetodePembayaranAPIController::class)
         ->except(['create', 'edit']);
 
     Route::resource('ratings', App\Http\Controllers\API\RatingAPIController::class)

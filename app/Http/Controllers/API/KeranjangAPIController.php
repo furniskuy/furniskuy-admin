@@ -286,7 +286,7 @@ class KeranjangAPIController extends AppBaseController
 
         $keranjang->delete();
 
-        return $this->sendSuccess(new KeranjangResource($keranjang), 'Keranjang deleted successfully');
+        return $this->sendResponse($keranjang, 'Keranjang deleted successfully');
     }
 
 
@@ -361,9 +361,9 @@ class KeranjangAPIController extends AppBaseController
      *      )
      * )
      */
-    public function checkout(Request $request): JsonResponse
+    public function checkout(Request $request)
     {
-        $keranjang = $this->keranjangRepository->checkout($request->user()->id);
+        $keranjang = $this->keranjangRepository->checkout($request->user()->id, $request['metode_pembayaran']);
 
         return $this->sendResponse($keranjang, 'Checkout successfully');
     }

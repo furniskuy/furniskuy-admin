@@ -91,7 +91,7 @@ use Illuminate\Database\Eloquent\Model;
 
     public static array $rules = [
         'id_pembeli' => 'required',
-        'tanggal_transaksi' => 'required|default:now()',
+        'tanggal_transaksi' => 'required',
         'total_harga' => 'required',
         'total_barang' => 'required',
         'status' => 'required',
@@ -105,7 +105,7 @@ use Illuminate\Database\Eloquent\Model;
         'id_pembeli' => 'required'
     ];
 
-    public $with = ['listBarang'];
+    public $with = ['listBarang', 'metode'];
 
     public function pembeli(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -115,5 +115,24 @@ use Illuminate\Database\Eloquent\Model;
     public function listBarang()
     {
         return $this->belongsToMany(\App\Models\Inventaris::class, 'transaksi_barang', 'id_transaksi', 'id_inventaris')->withPivot('jumlah');
+    }
+
+    public function metode()
+    {
+        return $this->hasOne(\App\Models\MetodePembayaran::class, 'id', 'metode_pembayaran');
+    }
+
+
+    public $statuses = [
+        1 => 'Belum Bayar',
+        2 => 'Sedang Dikemas',
+        3 => 'Dikirim',
+        4 => 'Selesai',
+        5 => 'Dibatalkan',
+    ];
+
+    public function getStatus($value)
+    {
+        return $this->statuses[$value];
     }
 }
