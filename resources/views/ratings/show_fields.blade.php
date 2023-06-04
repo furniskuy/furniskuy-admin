@@ -10,10 +10,10 @@
     <p>{{ $rating->id_user }}</p>
 </div>
 
-<!-- Id Barang Field -->
+<!-- Id Inventaris Field -->
 <div class="col-sm-12">
-    {!! Form::label('id_barang', 'Id Barang:') !!}
-    <p>{{ $rating->id_barang }}</p>
+    {!! Form::label('id_inventaris', 'Id Inventaris:') !!}
+    <p>{{ $rating->id_inventaris }}</p>
 </div>
 
 <!-- Review Field -->

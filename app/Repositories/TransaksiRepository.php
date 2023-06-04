@@ -8,14 +8,16 @@ use App\Repositories\BaseRepository;
 class TransaksiRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'id_pegawai',
-        'id_kasir',
-        'id_pembeli',
-        'tanggal',
-        'id_barang',
-        'terbayar',
-        'harga',
-        'jumlah'
+        'tanggal_transaksi',
+        'total_harga',
+        'total_barang',
+        'status',
+        'status_transaksi',
+        'tenggat_waktu',
+        'metode_pembayaran',
+        'waktu_pembayaran',
+        'waktu_pengiriman',
+        'id_pembeli'
     ];
 
     public function getFieldsSearchable(): array
@@ -26,5 +28,10 @@ class TransaksiRepository extends BaseRepository
     public function model(): string
     {
         return Transaksi::class;
+    }
+
+    public function transaksiUser($id)
+    {
+        return $this->model->where('id_pembeli', $id)->latest()->get();
     }
 }

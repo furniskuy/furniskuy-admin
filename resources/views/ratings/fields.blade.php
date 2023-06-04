@@ -10,14 +10,14 @@
     {!! Form::number('id_user', null, ['class' => 'form-control', 'required']) !!}
 </div>
 
-<!-- Id Barang Field -->
+<!-- Id Inventaris Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_barang', 'Id Barang:') !!}
-    {!! Form::number('id_barang', null, ['class' => 'form-control', 'required']) !!}
+    {!! Form::label('id_inventaris', 'Id Inventaris:') !!}
+    {!! Form::number('id_inventaris', null, ['class' => 'form-control', 'required']) !!}
 </div>
 
 <!-- Review Field -->
-<div class="form-group col-sm-12 col-lg-12">
+<div class="form-group col-sm-6">
     {!! Form::label('review', 'Review:') !!}
-    {!! Form::textarea('review', null, ['class' => 'form-control', 'required', 'maxlength' => 65535, 'maxlength' => 65535, 'maxlength' => 65535]) !!}
+    {!! Form::text('review', null, ['class' => 'form-control', 'required', 'maxlength' => 255, 'maxlength' => 255, 'maxlength' => 255]) !!}
 </div>

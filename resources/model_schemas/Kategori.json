@@ -1,0 +1,54 @@
+[
+    {
+        "name": "id",
+        "dbType": "bigInteger,true,true",
+        "htmlType": "number",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
+    },
+    {
+        "name": "nama_kategori",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "slug_kategori",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "tags",
+        "dbType": "text",
+        "htmlType": "textarea",
+        "validations": "required|string|string|string",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Inventari,id_kategori"
+    }
+]

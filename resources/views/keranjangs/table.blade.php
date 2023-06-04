@@ -3,20 +3,20 @@
         <table class="table" id="keranjangs-table">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Id Barang</th>
                     <th>Id Pembeli</th>
                     <th>Jumlah</th>
+                    <th>Selected</th>
                     <th colspan="3">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($keranjangs as $keranjang)
                     <tr>
-                        <td>{{ $keranjang->id }}</td>
                         <td>{{ $keranjang->id_barang }}</td>
                         <td>{{ $keranjang->id_pembeli }}</td>
                         <td>{{ $keranjang->jumlah }}</td>
+                        <td>{{ $keranjang->selected }}</td>
                         <td style="width: 120px">
                             {!! Form::open(['route' => ['keranjangs.destroy', $keranjang->id], 'method' => 'delete']) !!}
                             <div class='btn-group'>

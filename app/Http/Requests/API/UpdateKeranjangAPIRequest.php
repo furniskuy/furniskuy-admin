@@ -25,7 +25,7 @@ class UpdateKeranjangAPIRequest extends APIRequest
     public function rules()
     {
         $rules = Keranjang::$rules;
-        
+        unset($rules['id_pembeli']);
         return $rules;
     }
 }

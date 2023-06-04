@@ -10,7 +10,7 @@ class RatingRepository extends BaseRepository
     protected $fieldSearchable = [
         'rating',
         'id_user',
-        'id_barang',
+        'id_inventaris',
         'review'
     ];
 

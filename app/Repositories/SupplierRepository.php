@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 class SupplierRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'nama',
+        'nama_supplier',
         'alamat'
     ];
 

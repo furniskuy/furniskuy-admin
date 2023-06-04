@@ -236,475 +236,13 @@
                 ]
             }
         },
-        "/barang-keluars": {
-            "get": {
-                "tags": [
-                    "BarangKeluar"
-                ],
-                "summary": "getBarangKeluarList",
-                "description": "Get all BarangKeluars",
-                "operationId": "75c59269ac55dd545c5b117ed8578861",
-                "parameters": [
-                    {
-                        "name": "skip",
-                        "in": "query",
-                        "description": "skip",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int32"
-                        }
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "limit",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int32"
-                        }
-                    },
-                    {
-                        "name": "search",
-                        "in": "query",
-                        "description": "search",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "format": "int32"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/BarangKeluar"
-                                            }
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "BarangKeluar"
-                ],
-                "summary": "createBarangKeluar",
-                "description": "Create BarangKeluar",
-                "operationId": "209c67d3bad752a9ba84da51182d2f91",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/BarangKeluar"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "$ref": "#/components/schemas/BarangKeluar"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/barang-keluars/{id}": {
-            "get": {
-                "tags": [
-                    "BarangKeluar"
-                ],
-                "summary": "getBarangKeluarItem",
-                "description": "Get BarangKeluar",
-                "operationId": "fa031454d0103814c09a2b2f4c7aacce",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of BarangKeluar",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "$ref": "#/components/schemas/BarangKeluar"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "BarangKeluar"
-                ],
-                "summary": "updateBarangKeluar",
-                "description": "Update BarangKeluar",
-                "operationId": "5fa4dd2037aa558866162a0472dcdbbc",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of BarangKeluar",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/BarangKeluar"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "$ref": "#/components/schemas/BarangKeluar"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "BarangKeluar"
-                ],
-                "summary": "deleteBarangKeluar",
-                "description": "Delete BarangKeluar",
-                "operationId": "76d8aaede2d4c2b66a48807042fed7de",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of BarangKeluar",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/barang-masuks": {
-            "get": {
-                "tags": [
-                    "BarangMasuk"
-                ],
-                "summary": "getBarangMasukList",
-                "description": "Get all BarangMasuks",
-                "operationId": "7cb18ad123c77c2cc40ec569c973e9c1",
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/BarangMasuk"
-                                            }
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "BarangMasuk"
-                ],
-                "summary": "createBarangMasuk",
-                "description": "Create BarangMasuk",
-                "operationId": "ed27426d2514a9147dbc08d682294a39",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/BarangMasuk"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "$ref": "#/components/schemas/BarangMasuk"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/barang-masuks/{id}": {
-            "get": {
-                "tags": [
-                    "BarangMasuk"
-                ],
-                "summary": "getBarangMasukItem",
-                "description": "Get BarangMasuk",
-                "operationId": "5e8b121a1bda7e1f9e2433d4202ef8c3",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of BarangMasuk",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "$ref": "#/components/schemas/BarangMasuk"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "BarangMasuk"
-                ],
-                "summary": "updateBarangMasuk",
-                "description": "Update BarangMasuk",
-                "operationId": "9e9fb2a8ebeb2a11ba29ab22b09a05ff",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of BarangMasuk",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/BarangMasuk"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "$ref": "#/components/schemas/BarangMasuk"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "BarangMasuk"
-                ],
-                "summary": "deleteBarangMasuk",
-                "description": "Delete BarangMasuk",
-                "operationId": "90db3b83612b18001f160803e15141d7",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of BarangMasuk",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/ekspedisis": {
             "get": {
                 "tags": [
                     "Ekspedisi"
                 ],
                 "summary": "getEkspedisiList",
-                "description": "Get all Ekspedisi",
+                "description": "Get all Ekspedisis",
                 "operationId": "78abd624c0cc78a075d548dc8b36d122",
                 "responses": {
                     "200": {
@@ -921,38 +459,6 @@
                 "summary": "getInventarisList",
                 "description": "Get all Inventaris",
                 "operationId": "365d64595728b205925bdc998007f05a",
-                "parameters": [
-                    {
-                        "name": "skip",
-                        "in": "query",
-                        "description": "skip",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int32"
-                        }
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "limit",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int32"
-                        }
-                    },
-                    {
-                        "name": "search",
-                        "in": "query",
-                        "description": "search",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "format": "int32"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -990,7 +496,7 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "multipart/form-data": {
+                        "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Inventaris"
                             }
@@ -1086,7 +592,7 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "multipart/form-data": {
+                        "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Inventaris"
                             }
@@ -1160,39 +666,32 @@
                 }
             }
         },
-        "/api/images/{fileName}": {
-            "delete": {
+        "/kategoris": {
+            "get": {
                 "tags": [
-                    "Images"
+                    "Kategori"
                 ],
-                "summary": "Delete existing image",
-                "description": "Returns success message if image deleted successfully",
-                "operationId": "deleteImage",
-                "parameters": [
-                    {
-                        "name": "fileName",
-                        "in": "path",
-                        "description": "Image fileName",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
+                "summary": "getKategoriList",
+                "description": "Get all Kategoris",
+                "operationId": "3077317ace276b5a3a38168be89e5e73",
                 "responses": {
                     "200": {
-                        "description": "Success message",
+                        "description": "successful operation",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "success": {
-                                            "type": "boolean",
-                                            "example": true
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Kategori"
+                                            }
                                         },
                                         "message": {
-                                            "type": "string",
-                                            "example": "Image deleted successfully"
+                                            "type": "string"
                                         }
                                     },
                                     "type": "object"
@@ -1200,12 +699,186 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
+                }
+            },
+            "post": {
+                "tags": [
+                    "Kategori"
+                ],
+                "summary": "createKategori",
+                "description": "Create Kategori",
+                "operationId": "cd2e3a2d2bb74a1d74075ae55127caa5",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Kategori"
+                            }
+                        }
                     }
-                ]
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Kategori"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/kategoris/{id}": {
+            "get": {
+                "tags": [
+                    "Kategori"
+                ],
+                "summary": "getKategoriItem",
+                "description": "Get Kategori",
+                "operationId": "437b3462be812b8241b3b715d2c6bfcf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Kategori",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Kategori"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Kategori"
+                ],
+                "summary": "updateKategori",
+                "description": "Update Kategori",
+                "operationId": "dff577dd5f66e2d6de7db0bfe7f675ac",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Kategori",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Kategori"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Kategori"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Kategori"
+                ],
+                "summary": "deleteKategori",
+                "description": "Delete Kategori",
+                "operationId": "4e86376db3ffa572f2c770dcef3ec3bb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Kategori",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/keranjangs": {
@@ -1216,38 +889,6 @@
                 "summary": "getKeranjangList",
                 "description": "Get all Keranjangs",
                 "operationId": "0ef5da25990af4ba372e372baf4b3fc6",
-                "parameters": [
-                    {
-                        "name": "skip",
-                        "in": "query",
-                        "description": "skip",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int32"
-                        }
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "limit",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int32"
-                        }
-                    },
-                    {
-                        "name": "search",
-                        "in": "query",
-                        "description": "search",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "format": "int32"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -1455,14 +1096,14 @@
                 }
             }
         },
-        "/keranjangs/user": {
+        "/metode-pembayarans": {
             "get": {
                 "tags": [
-                    "Keranjang"
+                    "MetodePembayaran"
                 ],
-                "summary": "kerangjangUser",
-                "description": "Keranjang User",
-                "operationId": "27f0e2e3750938b24614a7820fd14dc5",
+                "summary": "getMetodePembayaranList",
+                "description": "Get all MetodePembayarans",
+                "operationId": "ce262a15a80bd98d0a24cfde0fa168df",
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -1476,8 +1117,49 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/Keranjang"
+                                                "$ref": "#/components/schemas/MetodePembayaran"
                                             }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "MetodePembayaran"
+                ],
+                "summary": "createMetodePembayaran",
+                "description": "Create MetodePembayaran",
+                "operationId": "4b5139c551514c78757c560ef327207c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MetodePembayaran"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/MetodePembayaran"
                                         },
                                         "message": {
                                             "type": "string"
@@ -1491,19 +1173,19 @@
                 }
             }
         },
-        "/keranjangs/checkout/{id}": {
+        "/metode-pembayarans/{id}": {
             "get": {
                 "tags": [
-                    "Keranjang"
+                    "MetodePembayaran"
                 ],
-                "summary": "checkoutKeranjang",
-                "description": "Checkout Keranjang",
-                "operationId": "9cdecb8d319a84f96e36bbe9cf2a3234",
+                "summary": "getMetodePembayaranItem",
+                "description": "Get MetodePembayaran",
+                "operationId": "8c52af7b40fbffaec85e93952c5f234f",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of Keranjang",
+                        "description": "id of MetodePembayaran",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -1521,7 +1203,101 @@
                                             "type": "boolean"
                                         },
                                         "data": {
-                                            "$ref": "#/components/schemas/Keranjang"
+                                            "$ref": "#/components/schemas/MetodePembayaran"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "MetodePembayaran"
+                ],
+                "summary": "updateMetodePembayaran",
+                "description": "Update MetodePembayaran",
+                "operationId": "bce6e633d1441c5c04c1f8c3863a378b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of MetodePembayaran",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MetodePembayaran"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/MetodePembayaran"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "MetodePembayaran"
+                ],
+                "summary": "deleteMetodePembayaran",
+                "description": "Delete MetodePembayaran",
+                "operationId": "62094554dc0affc1152153e302447aa2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of MetodePembayaran",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
                                         },
                                         "message": {
                                             "type": "string"
@@ -1541,7 +1317,7 @@
                     "Pegawai"
                 ],
                 "summary": "getPegawaiList",
-                "description": "Get all Pegawai",
+                "description": "Get all Pegawais",
                 "operationId": "2f6dc82a8a8ef57a33b226e0f783cde6",
                 "responses": {
                     "200": {
@@ -1756,7 +1532,7 @@
                     "Pembeli"
                 ],
                 "summary": "getPembeliList",
-                "description": "Get all Pembeli",
+                "description": "Get all Pembelis",
                 "operationId": "a9f9ee631d0971e0f9650e4c576b865f",
                 "responses": {
                     "200": {
@@ -2624,146 +2400,276 @@
     },
     "components": {
         "schemas": {
-            "BarangKeluar": {
-                "required": [],
-                "properties": {
-                    "tanggal": {
-                        "description": "",
-                        "type": "string",
-                        "format": "date",
-                        "readOnly": false,
-                        "nullable": true
-                    }
-                },
-                "type": "object"
-            },
-            "BarangMasuk": {
-                "required": [],
-                "properties": {
-                    "nama": {
-                        "description": "",
-                        "type": "string",
-                        "readOnly": false,
-                        "nullable": true
-                    },
-                    "tanggal": {
-                        "description": "",
-                        "type": "string",
-                        "format": "date",
-                        "readOnly": false,
-                        "nullable": true
-                    }
-                },
-                "type": "object"
-            },
             "Ekspedisi": {
-                "required": [],
+                "required": [
+                    "nama_ekspedisi",
+                    "alamat",
+                    "no_hp",
+                    "email",
+                    "website",
+                    "logo"
+                ],
                 "properties": {
-                    "nama": {
+                    "nama_ekspedisi": {
                         "description": "",
                         "type": "string",
                         "readOnly": false,
-                        "nullable": true
-                    },
-                    "tanggal": {
-                        "description": "",
-                        "type": "string",
-                        "format": "date",
-                        "readOnly": false,
-                        "nullable": true
+                        "nullable": false
                     },
                     "alamat": {
                         "description": "",
                         "type": "string",
                         "readOnly": false,
+                        "nullable": false
+                    },
+                    "no_hp": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "email": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "website": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "logo": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
                         "nullable": true
                     }
                 },
                 "type": "object"
             },
             "Inventaris": {
-                "required": [],
+                "required": [
+                    "nama",
+                    "jumlah",
+                    "harga",
+                    "deskripsi",
+                    "foto",
+                    "id_user",
+                    "id_kategori",
+                    "id_supplier",
+                    "tags"
+                ],
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "format": "int32",
-                        "readOnly": true
-                    },
                     "nama": {
+                        "description": "",
                         "type": "string",
-                        "maxLength": 50
+                        "readOnly": false,
+                        "nullable": false
                     },
-                    "jumlah": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "harga": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "id_supplier": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "image": {
+                    "deskripsi": {
+                        "description": "",
                         "type": "string",
-                        "format": "binary"
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "foto": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tags": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Kategori": {
+                "required": [
+                    "nama_kategori",
+                    "slug_kategori",
+                    "tags"
+                ],
+                "properties": {
+                    "nama_kategori": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "slug_kategori": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tags": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
                     }
                 },
                 "type": "object"
             },
             "Keranjang": {
-                "required": [],
+                "required": [
+                    "id_barang",
+                    "id_pembeli",
+                    "jumlah"
+                ],
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "format": "int32",
-                        "readOnly": true
-                    },
-                    "id_barang": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "id_pembeli": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "jumlah": {
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "barang": {
-                        "type": "object",
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
                         "readOnly": true,
-                        "allOf": [
-                            {
-                                "$ref": "#/components/schemas/Inventaris"
-                            }
-                        ]
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "MetodePembayaran": {
+                "required": [
+                    "logo",
+                    "nama_bank",
+                    "no_rek",
+                    "atas_nama"
+                ],
+                "properties": {
+                    "logo": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "nama_bank": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "no_rek": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "atas_nama": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
                     }
                 },
                 "type": "object"
             },
             "Pegawai": {
-                "required": [],
+                "required": [
+                    "nama",
+                    "jenis_kelamin",
+                    "no_hp",
+                    "alamat",
+                    "tanggal_lahir"
+                ],
                 "properties": {
-                    "tanggal_lahir": {
+                    "nama": {
                         "description": "",
                         "type": "string",
-                        "format": "date",
                         "readOnly": false,
-                        "nullable": true
+                        "nullable": false
                     },
                     "jenis_kelamin": {
                         "description": "",
                         "type": "string",
                         "readOnly": false,
-                        "nullable": true
+                        "nullable": false
                     },
-                    "nama": {
+                    "no_hp": {
                         "description": "",
                         "type": "string",
                         "readOnly": false,
+                        "nullable": false
+                    },
+                    "alamat": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tanggal_lahir": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
                         "nullable": true
                     }
                 },
@@ -2771,6 +2677,11 @@
             },
             "Pembeli": {
                 "required": [
+                    "nama",
+                    "jenis_kelamin",
+                    "no_hp",
+                    "alamat",
+                    "tanggal_lahir",
                     "pembeli_baru"
                 ],
                 "properties": {
@@ -2778,19 +2689,52 @@
                         "description": "",
                         "type": "string",
                         "readOnly": false,
-                        "nullable": true
+                        "nullable": false
                     },
                     "jenis_kelamin": {
                         "description": "",
                         "type": "string",
                         "readOnly": false,
-                        "nullable": true
+                        "nullable": false
+                    },
+                    "no_hp": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "alamat": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tanggal_lahir": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": false
                     },
                     "pembeli_baru": {
                         "description": "",
                         "type": "boolean",
                         "readOnly": false,
                         "nullable": false
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
                     }
                 },
                 "type": "object"
@@ -2799,7 +2743,7 @@
                 "required": [
                     "rating",
                     "id_user",
-                    "id_barang",
+                    "id_inventaris",
                     "review"
                 ],
                 "properties": {
@@ -2808,42 +2752,115 @@
                         "type": "string",
                         "readOnly": false,
                         "nullable": false
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
                     }
                 },
                 "type": "object"
             },
             "Supplier": {
-                "required": [],
+                "required": [
+                    "nama_supplier",
+                    "alamat"
+                ],
                 "properties": {
-                    "nama": {
+                    "nama_supplier": {
                         "description": "",
                         "type": "string",
                         "readOnly": false,
-                        "nullable": true
+                        "nullable": false
                     },
                     "alamat": {
                         "description": "",
                         "type": "string",
                         "readOnly": false,
+                        "nullable": false
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
                         "nullable": true
                     }
                 },
                 "type": "object"
             },
             "Transaksi": {
-                "required": [],
+                "required": [
+                    "tanggal_transaksi",
+                    "total_harga",
+                    "total_barang",
+                    "status",
+                    "status_transaksi",
+                    "id_pembeli"
+                ],
                 "properties": {
-                    "tanggal": {
+                    "tanggal_transaksi": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "status_transaksi": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "tenggat_waktu": {
                         "description": "",
                         "type": "string",
                         "format": "date",
                         "readOnly": false,
                         "nullable": true
                     },
-                    "terbayar": {
+                    "waktu_pembayaran": {
                         "description": "",
                         "type": "string",
+                        "format": "date-time",
                         "readOnly": false,
+                        "nullable": true
+                    },
+                    "waktu_pengiriman": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
                         "nullable": true
                     }
                 },

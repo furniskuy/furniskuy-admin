@@ -6,57 +6,48 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @OA\Schema(
- *   schema="Keranjang",
- *   required={},
- *   @OA\Property(
- *     property="id",
- *     type="integer",
- *     format="int32",
- *     readOnly=true
- *   ),
- *   @OA\Property(
- *     property="id_barang",
- *     type="integer",
- *     format="int32"
- *   ),
- *   @OA\Property(
- *     property="id_pembeli",
- *     type="integer",
- *     format="int32"
- *   ),
- *   @OA\Property(
- *     property="jumlah",
- *     type="integer",
- *     format="int32"
- *   ),
- *   @OA\Property(
- *     property="barang",
- *     type="object",
- *     readOnly=true,
- *     allOf={
- *       @OA\Schema(
- *          ref="#/components/schemas/Inventaris"
- *       )
- *     }
- *   )
+ *      schema="Keranjang",
+ *      required={"id_barang","id_pembeli","jumlah"},
+ *      @OA\Property(
+ *          property="created_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @OA\Property(
+ *          property="updated_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      )
  * )
- */
-class Keranjang extends Model
+ */ class Keranjang extends Model
 {
     public $table = 'keranjang';
 
     public $fillable = [
         'id_barang',
         'id_pembeli',
-        'jumlah'
+        'jumlah',
+        'selected'
     ];
 
-    public $with = array('barang');
+    protected $casts = [];
 
     public static array $rules = [
         'id_barang' => 'required',
-        'jumlah' => 'required'
+        'id_pembeli' => 'required',
+        'jumlah' => 'required',
+        'selected' => 'nullable',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable'
     ];
+
+    public $with = ['barang'];
 
     public function barang()
     {

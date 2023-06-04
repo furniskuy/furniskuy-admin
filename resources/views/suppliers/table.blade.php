@@ -3,8 +3,7 @@
         <table class="table" id="suppliers-table">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Nama</th>
+                <th>Nama Supplier</th>
                 <th>Alamat</th>
                 <th colspan="3">Action</th>
             </tr>
@@ -12,8 +11,7 @@
             <tbody>
             @foreach($suppliers as $supplier)
                 <tr>
-                    <td>{{ $supplier->id }}</td>
-                    <td>{{ $supplier->nama }}</td>
+                    <td>{{ $supplier->nama_supplier }}</td>
                     <td>{{ $supplier->alamat }}</td>
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['suppliers.destroy', $supplier->id], 'method' => 'delete']) !!}

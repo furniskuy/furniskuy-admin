@@ -1,7 +1,7 @@
-<!-- Nama Field -->
+<!-- Nama Supplier Field -->
 <div class="col-sm-12">
-    {!! Form::label('nama', 'Nama:') !!}
-    <p>{{ $supplier->nama }}</p>
+    {!! Form::label('nama_supplier', 'Nama Supplier:') !!}
+    <p>{{ $supplier->nama_supplier }}</p>
 </div>
 
 <!-- Alamat Field -->

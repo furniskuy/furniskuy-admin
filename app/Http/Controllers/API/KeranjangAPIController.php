@@ -130,7 +130,6 @@ class KeranjangAPIController extends AppBaseController
         $input = $request->all();
         $input['id_pembeli'] = $request->user()->id;
 
-
         $keranjang = $this->keranjangRepository->createOrAdd($input);
 
         return $this->sendResponse(new KeranjangResource($keranjang), 'Keranjang saved successfully');
@@ -287,7 +286,7 @@ class KeranjangAPIController extends AppBaseController
 
         $keranjang->delete();
 
-        return $this->sendSuccess('Keranjang deleted successfully');
+        return $this->sendSuccess(new KeranjangResource($keranjang), 'Keranjang deleted successfully');
     }
 
 
@@ -328,7 +327,7 @@ class KeranjangAPIController extends AppBaseController
 
     /**
      * @OA\Get(
-     *      path="/keranjangs/checkout/{id}",
+     *      path="/keranjangs/checkout",
      *      summary="checkoutKeranjang",
      *      tags={"Keranjang"},
      *      description="Checkout Keranjang",
@@ -362,9 +361,9 @@ class KeranjangAPIController extends AppBaseController
      *      )
      * )
      */
-    public function checkout($id): JsonResponse
+    public function checkout(Request $request): JsonResponse
     {
-        $keranjang = $this->keranjangRepository->checkout($id);
+        $keranjang = $this->keranjangRepository->checkout($request->user()->id);
 
         return $this->sendResponse($keranjang, 'Checkout successfully');
     }

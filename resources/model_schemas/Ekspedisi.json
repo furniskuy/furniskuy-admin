@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "integer,true",
+        "dbType": "bigInteger,true,true",
         "htmlType": "number",
         "validations": "",
         "searchable": false,
@@ -12,22 +12,10 @@
         "inView": false
     },
     {
-        "name": "nama",
+        "name": "nama_ekspedisi",
         "dbType": "string",
         "htmlType": "text",
-        "validations": "nullable|string|max:50|nullable|string|max:50|nullable|string|max:50",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "name": "tanggal",
-        "dbType": "date",
-        "htmlType": "date",
-        "validations": "nullable|nullable|nullable",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -39,7 +27,7 @@
         "name": "alamat",
         "dbType": "string",
         "htmlType": "text",
-        "validations": "nullable|string|max:100|nullable|string|max:100|nullable|string|max:100",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -48,31 +36,75 @@
         "inView": true
     },
     {
-        "name": "jumlah",
-        "dbType": "integer,false",
-        "htmlType": "number",
+        "name": "no_hp",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "email",
+        "dbType": "string",
+        "htmlType": "email",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "website",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "logo",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "created_at",
+        "dbType": "datetime",
+        "htmlType": "date",
         "validations": "nullable|nullable|nullable",
-        "searchable": true,
-        "fillable": true,
+        "searchable": false,
+        "fillable": false,
         "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
     },
     {
-        "name": "id_pegawai",
-        "dbType": "integer,false",
-        "htmlType": "number",
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
         "validations": "nullable|nullable|nullable",
-        "searchable": true,
-        "fillable": true,
+        "searchable": false,
+        "fillable": false,
         "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
-        "type": "relation",
-        "relation": "mt1,Pegawai,id_pegawai"
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
     }
 ]

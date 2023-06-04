@@ -7,9 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @OA\Schema(
  *      schema="Transaksi",
- *      required={},
+ *      required={"tanggal_transaksi","total_harga","total_barang","status","status_transaksi","id_pembeli"},
  *      @OA\Property(
- *          property="tanggal",
+ *          property="tanggal_transaksi",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @OA\Property(
+ *          property="status_transaksi",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="tenggat_waktu",
  *          description="",
  *          readOnly=false,
  *          nullable=true,
@@ -17,69 +32,88 @@ use Illuminate\Database\Eloquent\Model;
  *          format="date"
  *      ),
  *      @OA\Property(
- *          property="terbayar",
+ *          property="waktu_pembayaran",
  *          description="",
  *          readOnly=false,
  *          nullable=true,
  *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @OA\Property(
+ *          property="waktu_pengiriman",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @OA\Property(
+ *          property="created_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @OA\Property(
+ *          property="updated_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
  *      )
  * )
- */class Transaksi extends Model
+ */ class Transaksi extends Model
 {
     public $table = 'transaksi';
 
     public $fillable = [
-        'id_pegawai',
-        'id_kasir',
-        'id_pembeli',
-        'tanggal',
-        'id_barang',
-        'terbayar',
-        'harga',
-        'diskon',
-        'jumlah',
+        'tanggal_transaksi',
+        'total_harga',
+        'total_barang',
         'status',
-        'status_transaksi'
+        'status_transaksi',
+        'tenggat_waktu',
+        'metode_pembayaran',
+        'waktu_pembayaran',
+        'waktu_pengiriman',
+        'id_pembeli'
     ];
 
     protected $casts = [
-        'tanggal' => 'date',
-        'terbayar' => 'string'
+        'tanggal_transaksi' => 'string',
+        'status_transaksi' => 'string',
+        'tenggat_waktu' => 'string',
+        'waktu_pembayaran' => 'string',
+        'waktu_pengiriman' => 'string'
     ];
 
     public static array $rules = [
-        'id_pegawai' => 'nullable',
-        'id_kasir' => 'nullable',
-        'id_pembeli' => 'nullable',
-        'tanggal' => 'nullable',
-        'id_barang' => 'nullable',
-        'terbayar' => 'nullable|string|max:50',
-        'harga' => 'nullable',
-        'jumlah' => 'nullable'
+        'id_pembeli' => 'required',
+        'tanggal_transaksi' => 'required|default:now()',
+        'total_harga' => 'required',
+        'total_barang' => 'required',
+        'status' => 'required',
+        'status_transaksi' => 'required|string|max:255',
+        'tenggat_waktu' => 'nullable',
+        'metode_pembayaran' => 'nullable',
+        'waktu_pembayaran' => 'nullable',
+        'waktu_pengiriman' => 'nullable',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable',
+        'id_pembeli' => 'required'
     ];
 
-    public function pegawai(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\App\Models\Pegawai::class, 'id_pegawai');
-    }
+    public $with = ['listBarang'];
 
     public function pembeli(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Pembeli::class, 'id_pembeli');
+        return $this->belongsTo(\App\Models\User::class, 'id_pembeli');
     }
 
-    // public function total(): int
-    // {
-    //     $total = $this->harga;
-
-    //     if ($this->diskon != 0) {
-    //         $total = $this->harga * $this->diskon;
-    //     }
-
-    //     if ($this->diskonCoret != 0) {
-    //         $total = $this->harga - $this->diskonCoret;
-    //     }
-
-    //    return $total;
-    // }
+    public function listBarang()
+    {
+        return $this->belongsToMany(\App\Models\Inventaris::class, 'transaksi_barang', 'id_transaksi', 'id_inventaris')->withPivot('jumlah');
+    }
 }

@@ -17,11 +17,16 @@ class InventarisResource extends JsonResource
         return [
             'id' => $this->id,
             'nama' => $this->nama,
-            'image' => $this->image,
             'jumlah' => $this->jumlah,
             'harga' => $this->harga,
+            'deskripsi' => $this->deskripsi,
+            'foto' => $this->foto,
+            'id_user' => $this->id_user,
+            'id_kategori' => $this->id_kategori,
             'id_supplier' => $this->id_supplier,
-            'supplier' => $this->supplier,
+            'tags' => $this->tags,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }

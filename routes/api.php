@@ -28,22 +28,6 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
-    Route::resource('barang-keluars', App\Http\Controllers\API\BarangKeluarAPIController::class)
-        ->except(['create', 'edit']);
-
-    Route::resource('barang-masuks', App\Http\Controllers\API\BarangMasukAPIController::class)
-        ->except(['create', 'edit']);
-
-    Route::resource('ekspedisis', App\Http\Controllers\API\EkspedisiAPIController::class)
-        ->except(['create', 'edit']);
-
-    Route::resource('inventaris', App\Http\Controllers\API\InventarisAPIController::class)
-        ->except(['create', 'edit']);
-
     Route::resource('pegawais', App\Http\Controllers\API\PegawaiAPIController::class)
         ->except(['create', 'edit']);
 
@@ -53,9 +37,26 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('suppliers', App\Http\Controllers\API\SupplierAPIController::class)
         ->except(['create', 'edit']);
 
-    Route::resource('transaksis', App\Http\Controllers\API\TransaksiAPIController::class)
+    Route::resource('ekspedisis', App\Http\Controllers\API\EkspedisiAPIController::class)
         ->except(['create', 'edit']);
 
+    Route::resource('kategoris', App\Http\Controllers\API\KategoriAPIController::class)
+        ->except(['create', 'edit']);
+
+    Route::resource('inventaris', App\Http\Controllers\API\InventarisAPIController::class)
+        ->except(['create', 'edit']);
+
+    Route::resource('metode-pembayarans', App\Http\Controllers\API\MetodePembayaranAPIController::class)
+        ->except(['create', 'edit']);
+
+    Route::resource('ratings', App\Http\Controllers\API\RatingAPIController::class)
+        ->except(['create', 'edit']);
+
+    Route::resource('transaksi-barangs', App\Http\Controllers\API\TransaksiBarangAPIController::class)
+        ->except(['create', 'edit']);
+
+    Route::resource('users', App\Http\Controllers\API\UserAPIController::class)
+        ->except(['create', 'edit']);
 
     Route::group(['prefix' => 'keranjangs'], function () {
         Route::get('/user', [App\Http\Controllers\API\KeranjangAPIController::class, 'keranjangUser']);
@@ -65,7 +66,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('keranjangs', App\Http\Controllers\API\KeranjangAPIController::class)
         ->except(['create', 'edit']);
 
+    Route::group(['prefix' => 'transaksi'], function () {
+        Route::get('/user', [App\Http\Controllers\API\TransaksiAPIController::class, 'transaksiUser']);
+    });
 
-    Route::resource('ratings', App\Http\Controllers\API\RatingAPIController::class)
+    Route::resource('transaksi', App\Http\Controllers\API\TransaksiAPIController::class)
         ->except(['create', 'edit']);
 });

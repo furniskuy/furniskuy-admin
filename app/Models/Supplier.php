@@ -7,20 +7,36 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @OA\Schema(
  *      schema="Supplier",
- *      required={},
+ *      required={"nama_supplier","alamat"},
  *      @OA\Property(
- *          property="nama",
+ *          property="nama_supplier",
  *          description="",
  *          readOnly=false,
- *          nullable=true,
+ *          nullable=false,
  *          type="string",
  *      ),
  *      @OA\Property(
  *          property="alamat",
  *          description="",
  *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="created_at",
+ *          description="",
+ *          readOnly=true,
  *          nullable=true,
  *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @OA\Property(
+ *          property="updated_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
  *      )
  * )
  */class Supplier extends Model
@@ -28,24 +44,21 @@ use Illuminate\Database\Eloquent\Model;
     public $table = 'supplier';
 
     public $fillable = [
-        'nama',
+        'nama_supplier',
         'alamat'
     ];
 
     protected $casts = [
-        'nama' => 'string',
+        'nama_supplier' => 'string',
         'alamat' => 'string'
     ];
 
     public static array $rules = [
-        'nama' => 'nullable|string|max:50',
-        'alamat' => 'nullable|string|max:50'
+        'nama_supplier' => 'required|string|max:255',
+        'alamat' => 'required|string|max:255',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable'
     ];
-
-    public function barangMasuks(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(\App\Models\BarangMasuk::class, 'id_supplier');
-    }
 
     public function inventaris(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

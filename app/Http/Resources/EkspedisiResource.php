@@ -16,11 +16,14 @@ class EkspedisiResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nama' => $this->nama,
-            'tanggal' => $this->tanggal,
+            'nama_ekspedisi' => $this->nama_ekspedisi,
             'alamat' => $this->alamat,
-            'jumlah' => $this->jumlah,
-            'id_pegawai' => $this->id_pegawai
+            'no_hp' => $this->no_hp,
+            'email' => $this->email,
+            'website' => $this->website,
+            'logo' => $this->logo,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }

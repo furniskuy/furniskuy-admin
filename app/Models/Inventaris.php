@@ -7,69 +7,111 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @OA\Schema(
  *      schema="Inventaris",
- *      required={},
- *      @OA\Property(
- *          property="id",
- *          type="integer",
- *          format="int32",
- *          readOnly=true
- *     ),
+ *      required={"nama","jumlah","harga","deskripsi","foto","id_user","id_kategori","id_supplier","tags"},
  *      @OA\Property(
  *          property="nama",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
  *          type="string",
- *          maxLength=50
  *      ),
  *      @OA\Property(
- *          property="jumlah",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @OA\Property(
- *          property="harga",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @OA\Property(
- *          property="id_supplier",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @OA\Property(
- *          property="image",
+ *          property="deskripsi",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
  *          type="string",
- *          format="binary"
  *      ),
+ *      @OA\Property(
+ *          property="foto",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="tags",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="created_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @OA\Property(
+ *          property="updated_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      )
  * )
  */ class Inventaris extends Model
 {
     public $table = 'inventaris';
 
-    public $timestamps = false;
-
     public $fillable = [
         'nama',
         'jumlah',
         'harga',
+        'deskripsi',
+        'foto',
+        'id_user',
+        'id_kategori',
         'id_supplier',
-        'image'
+        'tags'
     ];
 
-    public $with = array('supplier');
+    protected $casts = [
+        'nama' => 'string',
+        'deskripsi' => 'string',
+        'foto' => 'string',
+        'tags' => 'string'
+    ];
 
     public static array $rules = [
-        'nama' => 'nullable|string|max:50',
-        'jumlah' => 'nullable',
-        'harga' => 'nullable',
-        'id_supplier' => 'nullable',
+        'nama' => 'required|string|max:255',
+        'jumlah' => 'required',
+        'harga' => 'required',
+        'deskripsi' => 'required|string',
+        'foto' => 'required|string|max:255',
+        'id_user' => 'required',
+        'id_kategori' => 'required',
+        'id_supplier' => 'required',
+        'tags' => 'required|string',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable'
     ];
 
-    public function supplier(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function idKategori(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Supplier::class, 'id_supplier', 'id');
+        return $this->belongsTo(\App\Models\Kategori::class, 'id_kategori');
     }
 
-    public function barangKeluars(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function idSupplier(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(\App\Models\BarangKeluar::class, 'id_inventaris');
+        return $this->belongsTo(\App\Models\Supplier::class, 'id_supplier');
+    }
+
+    public function idUser(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(\App\Models\User::class, 'id_user');
+    }
+
+    public function ratings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\App\Models\Rating::class, 'id_inventaris');
+    }
+
+    public function transaksiBarangs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\App\Models\TransaksiBarang::class, 'id_inventaris');
     }
 }

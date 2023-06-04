@@ -8,11 +8,12 @@ use App\Repositories\BaseRepository;
 class EkspedisiRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'nama',
-        'tanggal',
+        'nama_ekspedisi',
         'alamat',
-        'jumlah',
-        'id_pegawai'
+        'no_hp',
+        'email',
+        'website',
+        'logo'
     ];
 
     public function getFieldsSearchable(): array

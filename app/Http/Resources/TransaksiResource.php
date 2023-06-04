@@ -16,14 +16,18 @@ class TransaksiResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'id_pegawai' => $this->id_pegawai,
-            'id_kasir' => $this->id_kasir,
-            'id_pembeli' => $this->id_pembeli,
-            'tanggal' => $this->tanggal,
-            'id_barang' => $this->id_barang,
-            'terbayar' => $this->terbayar,
-            'harga' => $this->harga,
-            'jumlah' => $this->jumlah
+            'tanggal_transaksi' => $this->tanggal_transaksi,
+            'total_harga' => $this->total_harga,
+            'total_barang' => $this->total_barang,
+            'status' => $this->status,
+            'status_transaksi' => $this->status_transaksi,
+            'tenggat_waktu' => $this->tenggat_waktu,
+            'metode_pembayaran' => $this->metode_pembayaran,
+            'waktu_pembayaran' => $this->waktu_pembayaran,
+            'waktu_pengiriman' => $this->waktu_pengiriman,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'id_pembeli' => $this->id_pembeli
         ];
     }
 }

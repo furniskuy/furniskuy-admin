@@ -6,19 +6,45 @@
     </a>
 </li>
 
+
 <li class="nav-item">
-    <a href="{{ route('barang-keluars.index') }}" class="nav-link {{ Request::is('barangKeluars*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-sign-out-alt"></i>
-        <p>Barang Keluar</p>
+    <a href="{{ route('inventaris.index') }}" class="nav-link {{ Request::is('inventaris*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-warehouse"></i>
+        <p>Inventaris</p>
+    </a>
+</li>
+
+
+<li class="nav-item">
+    <a href="{{ route('kategoris.index') }}" class="nav-link {{ Request::is('kategoris*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Kategoris</p>
+    </a>
+</li>
+
+
+<li class="nav-item">
+    <a href="{{ route('keranjangs.index') }}" class="nav-link {{ Request::is('keranjangs*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-shopping-cart"></i>
+        <p>Keranjangs</p>
     </a>
 </li>
 
 <li class="nav-item">
-    <a href="{{ route('barang-masuks.index') }}" class="nav-link {{ Request::is('barangMasuks*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-sign-out-alt "></i>
-        <p>Barang Masuk</p>
+    <a href="{{ route('metode-pembayarans.index') }}"
+        class="nav-link {{ Request::is('metode-pembayarans*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Metode Pembayarans</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="{{ route('suppliers.index') }}" class="nav-link {{ Request::is('suppliers*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-people-carry"></i>
+        <p>Supplier</p>
+    </a>
+</li>
+
 
 <li class="nav-item">
     <a href="{{ route('ekspedisis.index') }}" class="nav-link {{ Request::is('ekspedisis*') ? 'active' : '' }}">
@@ -28,9 +54,17 @@
 </li>
 
 <li class="nav-item">
-    <a href="{{ route('inventaris.index') }}" class="nav-link {{ Request::is('inventaris*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-warehouse"></i>
-        <p>Inventaris</p>
+    <a href="{{ route('transaksis.index') }}" class="nav-link {{ Request::is('transaksis*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-clipboard-list"></i>
+        <p>Transaksi</p>
+    </a>
+</li>
+
+
+<li class="nav-item">
+    <a href="{{ route('ratings.index') }}" class="nav-link {{ Request::is('ratings*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-star"></i>
+        <p>Ratings</p>
     </a>
 </li>
 
@@ -49,29 +83,16 @@
 </li>
 
 <li class="nav-item">
-    <a href="{{ route('transaksis.index') }}" class="nav-link {{ Request::is('transaksis*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-clipboard-list"></i>
-        <p>Transaksi</p>
+    <a href="{{ route('transaksi-barangs.index') }}"
+        class="nav-link {{ Request::is('transaksiBarangs*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Transaksi Barangs</p>
     </a>
 </li>
 
 <li class="nav-item">
-    <a href="{{ route('suppliers.index') }}" class="nav-link {{ Request::is('suppliers*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-people-carry"></i>
-        <p>Supplier</p>
-    </a>
-</li>
-
-<li class="nav-item">
-    <a href="{{ route('keranjangs.index') }}" class="nav-link {{ Request::is('keranjangs*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-shopping-cart"></i>
-        <p>Keranjangs</p>
-    </a>
-</li>
-
-<li class="nav-item">
-    <a href="{{ route('ratings.index') }}" class="nav-link {{ Request::is('ratings*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-star"></i>
-        <p>Ratings</p>
+    <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>Users</p>
     </a>
 </li>

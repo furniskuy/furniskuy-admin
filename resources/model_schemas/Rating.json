@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "integer,true",
+        "dbType": "bigInteger,true,true",
         "htmlType": "number",
         "validations": "",
         "searchable": false,
@@ -25,7 +25,7 @@
     },
     {
         "name": "id_user",
-        "dbType": "integer,false",
+        "dbType": "bigInteger,false,true",
         "htmlType": "number",
         "validations": "required",
         "searchable": true,
@@ -36,8 +36,8 @@
         "inView": true
     },
     {
-        "name": "id_barang",
-        "dbType": "integer,false",
+        "name": "id_inventaris",
+        "dbType": "bigInteger,false,true",
         "htmlType": "number",
         "validations": "required",
         "searchable": true,
@@ -49,14 +49,46 @@
     },
     {
         "name": "review",
-        "dbType": "text",
-        "htmlType": "textarea",
-        "validations": "required|string|max:65535|string|max:65535|string|max:65535",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
         "searchable": true,
         "fillable": true,
         "primary": false,
         "inForm": true,
         "inIndex": true,
         "inView": true
+    },
+    {
+        "name": "created_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": "nullable|nullable|nullable",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": "nullable|nullable|nullable",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,Inventari,id_inventaris"
+    },
+    {
+        "type": "relation",
+        "relation": "mt1,User,id_user"
     }
 ]

@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "integer,true",
+        "dbType": "bigInteger,true,true",
         "htmlType": "number",
         "validations": "",
         "searchable": false,
@@ -12,10 +12,10 @@
         "inView": false
     },
     {
-        "name": "nama",
+        "name": "nama_supplier",
         "dbType": "string",
         "htmlType": "text",
-        "validations": "nullable|string|max:50|nullable|string|max:50|nullable|string|max:50",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -27,7 +27,7 @@
         "name": "alamat",
         "dbType": "string",
         "htmlType": "text",
-        "validations": "nullable|string|max:50|nullable|string|max:50|nullable|string|max:50",
+        "validations": "required|string|max:255|string|max:255|string|max:255",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -36,8 +36,28 @@
         "inView": true
     },
     {
-        "type": "relation",
-        "relation": "1tm,BarangMasuk,id_supplier"
+        "name": "created_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": "nullable|nullable|nullable",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": "nullable|nullable|nullable",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
     },
     {
         "type": "relation",

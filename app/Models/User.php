@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,112 +9,114 @@ use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @OA\Schema(
- *     schema="User",
- *     required={},
- *     @OA\Property(
- *         property="id",
- *         type="integer",
- *         format="int32",
- *         readOnly=true
- *     ),
- *     @OA\Property(
- *         property="name",
- *         type="string"
- *     ),
- *     @OA\Property(
- *         property="email",
- *         type="string"
- *     ),
- *     @OA\Property(
- *         property="email_verified_at",
- *         type="string",
- *         format="date-time",
- *         readOnly=true
- *     ),
- *     @OA\Property(
- *         property="password",
- *         type="string",
- *         format="password"
- *     ),
- *     @OA\Property(
- *         property="remember_token",
- *         type="string"
- *     ),
- *     @OA\Property(
- *         property="created_at",
- *         type="string",
- *         format="date-time",
- *         readOnly=true
- *     ),
- *     @OA\Property(
- *         property="updated_at",
- *         type="string",
- *         format="date-time",
- *         readOnly=true
- *     ),
- *     @OA\Property(
- *         property="pembeli",
- *         type="object",
- *         readOnly=true,
- *         allOf={
- *             @OA\Schema(
- *                 ref="#/components/schemas/Pembeli"
- *             )
- *         }
- *     ),
- *     @OA\Property(
- *         property="pegawai",
- *         type="object",
- *         readOnly=true,
- *         allOf={
- *             @OA\Schema(
- *                 ref="#/components/schemas/Pegawai"
- *             )
- *         }
- *     )
+ *      schema="User",
+ *      required={"name","email","password","role"},
+ *      @OA\Property(
+ *          property="name",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="email",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="email_verified_at",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @OA\Property(
+ *          property="password",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=false,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="remember_token",
+ *          description="",
+ *          readOnly=false,
+ *          nullable=true,
+ *          type="string",
+ *      ),
+ *      @OA\Property(
+ *          property="created_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @OA\Property(
+ *          property="updated_at",
+ *          description="",
+ *          readOnly=true,
+ *          nullable=true,
+ *          type="string",
+ *          format="date-time"
+ *      )
  * )
  */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
+    public $fillable = [
         'name',
         'email',
+        'email_verified_at',
         'password',
+        'role',
+        'remember_token'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
+        'name' => 'string',
+        'email' => 'string',
         'email_verified_at' => 'datetime',
+        'password' => 'string',
+        'remember_token' => 'string'
     ];
 
-    public function pembeli(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public static array $rules = [
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|max:255',
+        'email_verified_at' => 'nullable',
+        'password' => 'required|string|max:255',
+        'role' => 'required',
+        'remember_token' => 'nullable|string|max:100',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable'
+    ];
+
+    public $with = ['profile'];
+
+
+    public function profile(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(\App\Models\Pembeli::class, 'id');
+        return $this->hasOne(\App\Models\Pembeli::class, 'id_user');
     }
 
-    public function pegawai(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function inventaris(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasOne(\App\Models\Pegawai::class, 'id');
+        return $this->hasMany(\App\Models\Inventari::class, 'id_user');
+    }
+
+    public function ratings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\App\Models\Rating::class, 'id_user');
+    }
+
+    public function transaksis(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(\App\Models\Transaksi::class, 'id_pembeli');
     }
 }

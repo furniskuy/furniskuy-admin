@@ -254,11 +254,46 @@ class TransaksiAPIController extends AppBaseController
         }
 
         if ($transaksi->status != 0) {
-            return $this->sendError('Tidak bisa membatalkan transaksi yang sudah diproses silahkan hubungi call center kami') ;
+            return $this->sendError('Tidak bisa membatalkan transaksi yang sudah diproses silahkan hubungi call center kami');
         }
 
         $transaksi->delete();
 
         return $this->sendSuccess('Transaksi deleted successfully');
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/transaksi/user",
+     *      summary="transaksiuser",
+     *      tags={"Transaksi"},
+     *      description="Transaksi User",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/Transaksi")
+     *              ),
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function transaksiUser(Request $request): JsonResponse
+    {
+        $transaksi = $this->transaksiRepository->transaksiUser($request->user()->id);
+
+        return $this->sendResponse($transaksi, 'Transaksi retrieved successfully');
     }
 }

@@ -16,9 +16,14 @@ class PegawaiResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'tanggal_lahir' => $this->tanggal_lahir,
+            'id_user' => $this->id_user,
+            'nama' => $this->nama,
             'jenis_kelamin' => $this->jenis_kelamin,
-            'nama' => $this->nama
+            'no_hp' => $this->no_hp,
+            'alamat' => $this->alamat,
+            'tanggal_lahir' => $this->tanggal_lahir,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }

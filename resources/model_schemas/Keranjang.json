@@ -1,7 +1,7 @@
 [
     {
         "name": "id",
-        "dbType": "integer,true",
+        "dbType": "bigInteger,true,true",
         "htmlType": "number",
         "validations": "",
         "searchable": false,
@@ -36,7 +36,7 @@
         "inView": true
     },
     {
-        "name": "harga",
+        "name": "jumlah",
         "dbType": "integer,false",
         "htmlType": "number",
         "validations": "required",
@@ -48,15 +48,27 @@
         "inView": true
     },
     {
-        "name": "jumlah",
-        "dbType": "integer,false",
-        "htmlType": "number",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
+        "name": "created_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": "nullable|nullable|nullable",
+        "searchable": false,
+        "fillable": false,
         "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "datetime",
+        "htmlType": "date",
+        "validations": "nullable|nullable|nullable",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
     }
 ]

@@ -3,30 +3,32 @@
         <table class="table" id="transaksis-table">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Id Pegawai</th>
-                <th>Id Kasir</th>
+                <th>Tanggal Transaksi</th>
+                <th>Total Harga</th>
+                <th>Total Barang</th>
+                <th>Status</th>
+                <th>Status Transaksi</th>
+                <th>Tenggat Waktu</th>
+                <th>Metode Pembayaran</th>
+                <th>Waktu Pembayaran</th>
+                <th>Waktu Pengiriman</th>
                 <th>Id Pembeli</th>
-                <th>Tanggal</th>
-                <th>Id Barang</th>
-                <th>Terbayar</th>
-                <th>Harga</th>
-                <th>Jumlah</th>
                 <th colspan="3">Action</th>
             </tr>
             </thead>
             <tbody>
             @foreach($transaksis as $transaksi)
                 <tr>
-                    <td>{{ $transaksi->id }}</td>
-                    <td>{{ $transaksi->id_pegawai }}</td>
-                    <td>{{ $transaksi->id_kasir }}</td>
+                    <td>{{ $transaksi->tanggal_transaksi }}</td>
+                    <td>{{ $transaksi->total_harga }}</td>
+                    <td>{{ $transaksi->total_barang }}</td>
+                    <td>{{ $transaksi->status }}</td>
+                    <td>{{ $transaksi->status_transaksi }}</td>
+                    <td>{{ $transaksi->tenggat_waktu }}</td>
+                    <td>{{ $transaksi->metode_pembayaran }}</td>
+                    <td>{{ $transaksi->waktu_pembayaran }}</td>
+                    <td>{{ $transaksi->waktu_pengiriman }}</td>
                     <td>{{ $transaksi->id_pembeli }}</td>
-                    <td>{{ $transaksi->tanggal }}</td>
-                    <td>{{ $transaksi->id_barang }}</td>
-                    <td>{{ $transaksi->terbayar }}</td>
-                    <td>{{ $transaksi->harga }}</td>
-                    <td>{{ $transaksi->jumlah }}</td>
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['transaksis.destroy', $transaksi->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

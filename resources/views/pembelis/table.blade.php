@@ -2,38 +2,46 @@
     <div class="table-responsive">
         <table class="table" id="pembelis-table">
             <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nama</th>
-                <th>Jenis Kelamin</th>
-                <th>Pembeli Baru</th>
-                <th colspan="3">Action</th>
-            </tr>
+                <tr>
+                    <th>Id User</th>
+                    <th>Nama</th>
+                    <th>Jenis Kelamin</th>
+                    <th>No Hp</th>
+                    <th>Alamat</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Pembeli Baru</th>
+                    <th colspan="3">Action</th>
+                </tr>
             </thead>
             <tbody>
-            @foreach($pembelis as $pembeli)
-                <tr>
-                    <td>{{ $pembeli->id }}</td>
-                    <td>{{ $pembeli->nama }}</td>
-                    <td>{{ $pembeli->jenis_kelamin }}</td>
-                    <td>{{ $pembeli->pembeli_baru }}</td>
-                    <td  style="width: 120px">
-                        {!! Form::open(['route' => ['pembelis.destroy', $pembeli->id], 'method' => 'delete']) !!}
-                        <div class='btn-group'>
-                            <a href="{{ route('pembelis.show', [$pembeli->id]) }}"
-                               class='btn btn-default btn-xs'>
-                                <i class="far fa-eye"></i>
-                            </a>
-                            <a href="{{ route('pembelis.edit', [$pembeli->id]) }}"
-                               class='btn btn-default btn-xs'>
-                                <i class="far fa-edit"></i>
-                            </a>
-                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                        </div>
-                        {!! Form::close() !!}
-                    </td>
-                </tr>
-            @endforeach
+                @foreach ($pembelis as $pembeli)
+                    <tr>
+                        <td>{{ $pembeli->id_user }}</td>
+                        <td>{{ $pembeli->nama }}</td>
+                        <td>{{ $pembeli->jenis_kelamin }}</td>
+                        <td>{{ $pembeli->no_hp }}</td>
+                        <td>{{ $pembeli->alamat }}</td>
+                        <td>{{ $pembeli->tanggal_lahir }}</td>
+                        <td>{{ $pembeli->pembeli_baru }}</td>
+                        <td style="width: 120px">
+                            {!! Form::open(['route' => ['pembelis.destroy', $pembeli->id], 'method' => 'delete']) !!}
+                            <div class='btn-group'>
+                                <a href="{{ route('pembelis.show', [$pembeli->id]) }}" class='btn btn-default btn-xs'>
+                                    <i class="far fa-eye"></i>
+                                </a>
+                                <a href="{{ route('pembelis.edit', [$pembeli->id]) }}" class='btn btn-default btn-xs'>
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                {!! Form::button('<i class="far fa-trash-alt"></i>', [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-danger btn-xs',
+                                    'onclick' => "return confirm('Are you sure?')",
+                                ]) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

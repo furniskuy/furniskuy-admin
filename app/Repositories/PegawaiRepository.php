@@ -8,9 +8,11 @@ use App\Repositories\BaseRepository;
 class PegawaiRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'tanggal_lahir',
+        'nama',
         'jenis_kelamin',
-        'nama'
+        'no_hp',
+        'alamat',
+        'tanggal_lahir'
     ];
 
     public function getFieldsSearchable(): array

@@ -10,6 +10,9 @@ class PembeliRepository extends BaseRepository
     protected $fieldSearchable = [
         'nama',
         'jenis_kelamin',
+        'no_hp',
+        'alamat',
+        'tanggal_lahir',
         'pembeli_baru'
     ];
 

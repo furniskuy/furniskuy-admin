@@ -11,7 +11,12 @@ class InventarisRepository extends BaseRepository
         'nama',
         'jumlah',
         'harga',
-        'id_supplier'
+        'deskripsi',
+        'foto',
+        'id_user',
+        'id_kategori',
+        'id_supplier',
+        'tags'
     ];
 
     public function getFieldsSearchable(): array

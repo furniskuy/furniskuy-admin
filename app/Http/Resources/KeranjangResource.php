@@ -19,6 +19,9 @@ class KeranjangResource extends JsonResource
             'id_barang' => $this->id_barang,
             'id_pembeli' => $this->id_pembeli,
             'jumlah' => $this->jumlah,
+            'selected' => $this->selected,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'barang' => $this->barang
         ];
     }

@@ -3,10 +3,9 @@
         <table class="table" id="ratings-table">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Rating</th>
                 <th>Id User</th>
-                <th>Id Barang</th>
+                <th>Id Inventaris</th>
                 <th>Review</th>
                 <th colspan="3">Action</th>
             </tr>
@@ -14,10 +13,9 @@
             <tbody>
             @foreach($ratings as $rating)
                 <tr>
-                    <td>{{ $rating->Id }}</td>
                     <td>{{ $rating->rating }}</td>
                     <td>{{ $rating->id_user }}</td>
-                    <td>{{ $rating->id_barang }}</td>
+                    <td>{{ $rating->id_inventaris }}</td>
                     <td>{{ $rating->review }}</td>
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['ratings.destroy', $rating->id], 'method' => 'delete']) !!}

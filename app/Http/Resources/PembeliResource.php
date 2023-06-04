@@ -16,9 +16,15 @@ class PembeliResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'id_user' => $this->id_user,
             'nama' => $this->nama,
             'jenis_kelamin' => $this->jenis_kelamin,
-            'pembeli_baru' => $this->pembeli_baru
+            'no_hp' => $this->no_hp,
+            'alamat' => $this->alamat,
+            'tanggal_lahir' => $this->tanggal_lahir,
+            'pembeli_baru' => $this->pembeli_baru,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }

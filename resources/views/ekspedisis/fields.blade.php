@@ -1,35 +1,35 @@
-<!-- Nama Field -->
+<!-- Nama Ekspedisi Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('nama', 'Nama:') !!}
-    {!! Form::text('nama', null, ['class' => 'form-control', 'maxlength' => 50, 'maxlength' => 50, 'maxlength' => 50]) !!}
+    {!! Form::label('nama_ekspedisi', 'Nama Ekspedisi:') !!}
+    {!! Form::text('nama_ekspedisi', null, ['class' => 'form-control', 'required', 'maxlength' => 255, 'maxlength' => 255, 'maxlength' => 255]) !!}
 </div>
-
-<!-- Tanggal Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('tanggal', 'Tanggal:') !!}
-    {!! Form::text('tanggal', null, ['class' => 'form-control','id'=>'tanggal']) !!}
-</div>
-
-@push('page_scripts')
-    <script type="text/javascript">
-        $('#tanggal').datepicker()
-    </script>
-@endpush
 
 <!-- Alamat Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('alamat', 'Alamat:') !!}
-    {!! Form::text('alamat', null, ['class' => 'form-control', 'maxlength' => 100, 'maxlength' => 100, 'maxlength' => 100]) !!}
+    {!! Form::text('alamat', null, ['class' => 'form-control', 'required', 'maxlength' => 255, 'maxlength' => 255, 'maxlength' => 255]) !!}
 </div>
 
-<!-- Jumlah Field -->
+<!-- No Hp Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('jumlah', 'Jumlah:') !!}
-    {!! Form::number('jumlah', null, ['class' => 'form-control']) !!}
+    {!! Form::label('no_hp', 'No Hp:') !!}
+    {!! Form::text('no_hp', null, ['class' => 'form-control', 'required', 'maxlength' => 255, 'maxlength' => 255, 'maxlength' => 255]) !!}
 </div>
 
-<!-- Id Pegawai Field -->
+<!-- Email Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('id_pegawai', 'Id Pegawai:') !!}
-    {!! Form::number('id_pegawai', null, ['class' => 'form-control']) !!}
+    {!! Form::label('email', 'Email:') !!}
+    {!! Form::email('email', null, ['class' => 'form-control', 'required', 'maxlength' => 255, 'maxlength' => 255, 'maxlength' => 255]) !!}
+</div>
+
+<!-- Website Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('website', 'Website:') !!}
+    {!! Form::text('website', null, ['class' => 'form-control', 'required', 'maxlength' => 255, 'maxlength' => 255, 'maxlength' => 255]) !!}
+</div>
+
+<!-- Logo Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('logo', 'Logo:') !!}
+    {!! Form::text('logo', null, ['class' => 'form-control', 'required', 'maxlength' => 255, 'maxlength' => 255, 'maxlength' => 255]) !!}
 </div>

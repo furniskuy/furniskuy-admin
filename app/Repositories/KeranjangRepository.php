@@ -11,7 +11,6 @@ class KeranjangRepository extends BaseRepository
     protected $fieldSearchable = [
         'id_barang',
         'id_pembeli',
-        'harga',
         'jumlah'
     ];
 
@@ -39,10 +38,9 @@ class KeranjangRepository extends BaseRepository
 
     public function keranjangUser($id)
     {
-        return $this->model->where('id_pembeli', $id)->oldest()->get();
+        return $this->model->where('id_pembeli', $id)->latest()->get();
     }
 
-    // create transaksi with keranjang
     public function checkout($id)
     {
         $keranjang = $this->model->where('id_pembeli', $id)->get();
@@ -50,14 +48,20 @@ class KeranjangRepository extends BaseRepository
         foreach ($keranjang as $item) {
             $total += $item->barang->harga;
         }
-        $transaksi = [
+        $input = [
             'id_pembeli' => $id,
-            'terbayar' => 0,
-            'harga' => $total,
-            'jumlah' => $keranjang->count(),
+            'total_harga' => $total,
+            'total_barang' => $keranjang->count(),
+            'tenggat_waktu' => now()->addDays(1),
         ];
 
-        $transaksi = Transaksi::create($transaksi);
+        $transaksiBarang = $keranjang->mapWithKeys(function ($item) {
+            return [$item->id => ['jumlah' => $item->jumlah]];
+        });
+
+        $transaksi = Transaksi::create($input);
+        $transaksi->listBarang()->syncWithoutDetaching($transaksiBarang);
+
         return $transaksi;
     }
 }

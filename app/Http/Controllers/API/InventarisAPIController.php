@@ -136,8 +136,8 @@ class InventarisAPIController extends AppBaseController
     {
         $input = $request->all();
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
 
             $response = $this->uploadImage($image);
 
@@ -149,7 +149,7 @@ class InventarisAPIController extends AppBaseController
             // Get the URL of the uploaded image
             $imageUrl = $response->json('Key');
 
-            $input['image'] = $imageUrl;
+            $input['foto'] = $imageUrl;
         }
 
         $inventaris = $this->inventarisRepository->create($input);
@@ -259,8 +259,8 @@ class InventarisAPIController extends AppBaseController
             return $this->sendError('Inventaris not found');
         }
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
 
             $response = $this->uploadImage($image, $inventaris->image);
 
@@ -272,7 +272,7 @@ class InventarisAPIController extends AppBaseController
             // Get the URL of the uploaded image
             $imageUrl = $response->json('Key');
 
-            $input['image'] = $imageUrl;
+            $input['foto'] = $imageUrl;
         }
 
         $inventaris = $this->inventarisRepository->update($input, $id);
