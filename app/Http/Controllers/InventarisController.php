@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateInventarisRequest;
 use App\Http\Requests\UpdateInventarisRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Http\Traits\UploadImageTrait;
 use App\Repositories\InventarisRepository;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 
 class InventarisController extends AppBaseController
 {
+    use UploadImageTrait;
+
     /** @var InventarisRepository $inventarisRepository*/
     private $inventarisRepository;
 
@@ -44,6 +47,24 @@ class InventarisController extends AppBaseController
     public function store(CreateInventarisRequest $request)
     {
         $input = $request->all();
+
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+
+            $response = $this->uploadImage($image);
+
+            // Check if the upload was successful
+            if ($response->failed()) {
+                // Handle error
+                Flash::error('Failed to upload image.');
+                return redirect()->back();
+            }
+
+            // Get the URL of the uploaded image
+            $imageUrl = $response->json('Key');
+
+            $input['foto'] = $imageUrl;
+        }
 
         $inventaris = $this->inventarisRepository->create($input);
 
@@ -89,6 +110,7 @@ class InventarisController extends AppBaseController
      */
     public function update($id, UpdateInventarisRequest $request)
     {
+        $input = $request->all();
         $inventaris = $this->inventarisRepository->find($id);
 
         if (empty($inventaris)) {
@@ -97,7 +119,25 @@ class InventarisController extends AppBaseController
             return redirect(route('inventaris.index'));
         }
 
-        $inventaris = $this->inventarisRepository->update($request->all(), $id);
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+
+            $response = $this->uploadImage($image, $inventaris->image);
+
+            // Check if the upload was successful
+            if ($response->failed()) {
+                // Handle error
+                Flash::error('Failed to upload image.');
+                return redirect()->back();
+            }
+
+            // Get the URL of the uploaded image
+            $imageUrl = $response->json('Key');
+
+            $input['foto'] = $imageUrl;
+        }
+
+        $inventaris = $this->inventarisRepository->update($input, $id);
 
         Flash::success('Inventaris updated successfully.');
 

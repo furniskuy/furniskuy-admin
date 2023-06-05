@@ -25,7 +25,7 @@
 <!-- Foto Field -->
 <div class="col-sm-12">
     {!! Form::label('image', 'Gambar:') !!}
-    <img src="{{ env('SUPABASE_IMAGE_URL') . $inventaris->image }}" width="200" height="200"
+    <img src="{{ env('SUPABASE_IMAGE_URL') . $inventaris->foto }}" width="200" height="200"
         alt="{{ $inventaris->nama }}">
 </div>
 

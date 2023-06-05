@@ -81,7 +81,6 @@ use Illuminate\Database\Eloquent\Model;
         'jumlah' => 'required',
         'harga' => 'required',
         'deskripsi' => 'required|string',
-        'foto' => 'required|string|max:255',
         'id_user' => 'required',
         'id_kategori' => 'required',
         'id_supplier' => 'required',
