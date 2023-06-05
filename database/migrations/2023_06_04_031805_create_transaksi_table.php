@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('total_harga');
             $table->integer('total_barang');
 
-            $table->integer('status')->default(0);
+            $table->integer('status')->default(1);
             $table->string('status_transaksi')->default('Belum Bayar');
 
             $table->dateTime('tenggat_waktu')->nullable();

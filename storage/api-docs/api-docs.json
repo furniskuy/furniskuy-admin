@@ -242,7 +242,7 @@
                     "Ekspedisi"
                 ],
                 "summary": "getEkspedisiList",
-                "description": "Get all Ekspedisis",
+                "description": "Get all Ekspedisi",
                 "operationId": "78abd624c0cc78a075d548dc8b36d122",
                 "responses": {
                     "200": {
@@ -459,6 +459,38 @@
                 "summary": "getInventarisList",
                 "description": "Get all Inventaris",
                 "operationId": "365d64595728b205925bdc998007f05a",
+                "parameters": [
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "skip",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "limit",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "int32"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -496,7 +528,7 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "$ref": "#/components/schemas/Inventaris"
                             }
@@ -592,7 +624,7 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "$ref": "#/components/schemas/Inventaris"
                             }
@@ -664,6 +696,54 @@
                         }
                     }
                 }
+            }
+        },
+        "/api/images/{fileName}": {
+            "delete": {
+                "tags": [
+                    "Images"
+                ],
+                "summary": "Delete existing image",
+                "description": "Returns success message if image deleted successfully",
+                "operationId": "deleteImage",
+                "parameters": [
+                    {
+                        "name": "fileName",
+                        "in": "path",
+                        "description": "Image fileName",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Image deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/kategoris": {
@@ -889,6 +969,38 @@
                 "summary": "getKeranjangList",
                 "description": "Get all Keranjangs",
                 "operationId": "0ef5da25990af4ba372e372baf4b3fc6",
+                "parameters": [
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "description": "skip",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "limit",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "int32"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -1083,6 +1195,86 @@
                                         },
                                         "data": {
                                             "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/keranjangs/user": {
+            "get": {
+                "tags": [
+                    "Keranjang"
+                ],
+                "summary": "kerangjangUser",
+                "description": "Keranjang User",
+                "operationId": "27f0e2e3750938b24614a7820fd14dc5",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Keranjang"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/keranjangs/checkout": {
+            "get": {
+                "tags": [
+                    "Keranjang"
+                ],
+                "summary": "checkoutKeranjang",
+                "description": "Checkout Keranjang",
+                "operationId": "4afbcadce01b9cb1f17ffb6298cd0419",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Keranjang",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Keranjang"
                                         },
                                         "message": {
                                             "type": "string"
@@ -1317,7 +1509,7 @@
                     "Pegawai"
                 ],
                 "summary": "getPegawaiList",
-                "description": "Get all Pegawais",
+                "description": "Get all Pegawai",
                 "operationId": "2f6dc82a8a8ef57a33b226e0f783cde6",
                 "responses": {
                     "200": {
@@ -1532,7 +1724,7 @@
                     "Pembeli"
                 ],
                 "summary": "getPembeliList",
-                "description": "Get all Pembelis",
+                "description": "Get all Pembeli",
                 "operationId": "a9f9ee631d0971e0f9650e4c576b865f",
                 "responses": {
                     "200": {
@@ -2386,6 +2578,472 @@
                 }
             }
         },
+        "/transaksi/user": {
+            "get": {
+                "tags": [
+                    "Transaksi"
+                ],
+                "summary": "transaksiuser",
+                "description": "Transaksi User",
+                "operationId": "5ceb3791be69d453d389185fd41ae626",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Transaksi"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transaksi-barangs": {
+            "get": {
+                "tags": [
+                    "TransaksiBarang"
+                ],
+                "summary": "getTransaksiBarangList",
+                "description": "Get all TransaksiBarangs",
+                "operationId": "d86ee307241b8cd74030d0766fa93abf",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/TransaksiBarang"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "TransaksiBarang"
+                ],
+                "summary": "createTransaksiBarang",
+                "description": "Create TransaksiBarang",
+                "operationId": "ad464041445647e0d375effbb9103d52",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransaksiBarang"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/TransaksiBarang"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transaksi-barangs/{id}": {
+            "get": {
+                "tags": [
+                    "TransaksiBarang"
+                ],
+                "summary": "getTransaksiBarangItem",
+                "description": "Get TransaksiBarang",
+                "operationId": "6e4913ae84374ea2970094b37d3a9efb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of TransaksiBarang",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/TransaksiBarang"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "TransaksiBarang"
+                ],
+                "summary": "updateTransaksiBarang",
+                "description": "Update TransaksiBarang",
+                "operationId": "767db59184af0f0aba594cd58a3725ac",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of TransaksiBarang",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransaksiBarang"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/TransaksiBarang"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "TransaksiBarang"
+                ],
+                "summary": "deleteTransaksiBarang",
+                "description": "Delete TransaksiBarang",
+                "operationId": "e289537d282db4646d516beefb4f95ee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of TransaksiBarang",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "getUserList",
+                "description": "Get all Users",
+                "operationId": "1df092f5eddb2e29c3c5aa8043dd6d44",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/User"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "createUser",
+                "description": "Create User",
+                "operationId": "3465c05467f56755d8fde6dfe336f784",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "getUserItem",
+                "description": "Get User",
+                "operationId": "ca775ff26d0144e4b01abbd8c926f7c3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of User",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "updateUser",
+                "description": "Update User",
+                "operationId": "acefdff5c10ad10456b5e12506f8ab63",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of User",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "deleteUser",
+                "description": "Delete User",
+                "operationId": "b3671c968c691df9358298f3a285c767",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of User",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/": {
             "get": {
                 "description": "Home page",
@@ -2866,59 +3524,82 @@
                 },
                 "type": "object"
             },
-            "User": {
-                "required": [],
+            "TransaksiBarang": {
+                "required": [
+                    "id_inventaris",
+                    "id_transaksi",
+                    "jumlah"
+                ],
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "format": "int32",
-                        "readOnly": true
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "email_verified_at": {
-                        "type": "string",
-                        "format": "date-time",
-                        "readOnly": true
-                    },
-                    "password": {
-                        "type": "string",
-                        "format": "password"
-                    },
-                    "remember_token": {
-                        "type": "string"
-                    },
                     "created_at": {
+                        "description": "",
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true
+                        "readOnly": true,
+                        "nullable": true
                     },
                     "updated_at": {
+                        "description": "",
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true
-                    },
-                    "pembeli": {
-                        "type": "object",
                         "readOnly": true,
-                        "allOf": [
-                            {
-                                "$ref": "#/components/schemas/Pembeli"
-                            }
-                        ]
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "required": [
+                    "name",
+                    "email",
+                    "password",
+                    "role"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
                     },
-                    "pegawai": {
-                        "type": "object",
+                    "email": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "email_verified_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "password": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": false
+                    },
+                    "remember_token": {
+                        "description": "",
+                        "type": "string",
+                        "readOnly": false,
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
                         "readOnly": true,
-                        "allOf": [
-                            {
-                                "$ref": "#/components/schemas/Pegawai"
-                            }
-                        ]
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
                     }
                 },
                 "type": "object"

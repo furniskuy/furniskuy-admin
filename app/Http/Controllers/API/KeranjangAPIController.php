@@ -363,8 +363,13 @@ class KeranjangAPIController extends AppBaseController
      */
     public function checkout(Request $request)
     {
-        $keranjang = $this->keranjangRepository->checkout($request->user()->id, $request['metode_pembayaran']);
+        try {
+            $keranjang = $this->keranjangRepository->checkout($request->user()->id, $request['metode_pembayaran']);
+            return $this->sendResponse($keranjang, 'Checkout successfully');
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage());
+        }
 
-        return $this->sendResponse($keranjang, 'Checkout successfully');
+        return $this->sendError('Checkout gagal');
     }
 }
