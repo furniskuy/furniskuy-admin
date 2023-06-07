@@ -29,27 +29,27 @@ return new class extends Migration
             END
             ");
         } elseif (env('DB_CONNECTION') === 'pgsql') {
-            // DB::unprepared(<<<EOD
-            // CREATE OR REPLACE FUNCTION status_transaksi(transactionStatus INT)
-            // RETURNS VARCHAR(20)
-            // AS $$
-            //     DECLARE
-            //     status VARCHAR(20);
-            //     BEGIN
-            //     CASE transactionStatus
-            //         WHEN 1 THEN status := 'Belum Bayar';
-            //         WHEN 2 THEN status := 'Sedang Dikemas';
-            //         WHEN 3 THEN status := 'Dikirim';
-            //         WHEN 4 THEN status := 'Selesai';
-            //         WHEN 5 THEN status := 'Dibatalkan';
-            //         ELSE status := 'Status Tidak Valid';
-            //     END CASE;
+            DB::unprepared(<<<EOD
+            CREATE OR REPLACE FUNCTION status_transaksi(transactionStatus INT)
+            RETURNS VARCHAR(20)
+            AS $$
+                DECLARE
+                status VARCHAR(20);
+                BEGIN
+                CASE transactionStatus
+                    WHEN 1 THEN status := 'Belum Bayar';
+                    WHEN 2 THEN status := 'Sedang Dikemas';
+                    WHEN 3 THEN status := 'Dikirim';
+                    WHEN 4 THEN status := 'Selesai';
+                    WHEN 5 THEN status := 'Dibatalkan';
+                    ELSE status := 'Status Tidak Valid';
+                END CASE;
 
-            //     RETURN status;
-            //     END;
-            // $$
-            // LANGUAGE plpgsql;
-            // EOD);
+                RETURN status;
+                END;
+            $$
+            LANGUAGE plpgsql;
+            EOD);
         }
     }
 
@@ -63,7 +63,7 @@ return new class extends Migration
         if (env('DB_CONNECTION') === 'mysql') {
             DB::unprepared('DROP FUNCTION IF EXISTS status_transaksi');
         } elseif (env('DB_CONNECTION') === 'pgsql') {
-            // DB::unprepared('DROP FUNCTION IF EXISTS status_transaksi');
+            DB::unprepared('DROP FUNCTION IF EXISTS status_transaksi');
         }
     }
 };

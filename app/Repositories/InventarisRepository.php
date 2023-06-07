@@ -3,7 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Inventaris;
+use App\Models\TransaksiBarang;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 class InventarisRepository extends BaseRepository
 {
@@ -16,7 +18,7 @@ class InventarisRepository extends BaseRepository
         'id_user',
         'id_kategori',
         'id_supplier',
-        'tags'
+        'tags',
     ];
 
     public function getFieldsSearchable(): array
@@ -34,9 +36,19 @@ class InventarisRepository extends BaseRepository
         $query = $this->allQuery($search, $skip, $limit);
 
         if ($popular) {
-            $query = $query->select($columns);
-            $query = $query->selectRaw('RANK() OVER (ORDER BY (SELECT SUM(jumlah) FROM transaksi_barang WHERE transaksi_barang.id_inventaris = inventaris.ID) DESC) AS ranking');
-            $query = $query->orderBy('ranking');
+            if (env('DB_CONNECTION') == 'mysql') {
+                $query = $query->select($columns);
+                $query = $query->selectRaw('RANK() OVER (ORDER BY (SELECT SUM(jumlah) FROM transaksi_barang WHERE transaksi_barang.id_inventaris = inventaris.ID) DESC) AS ranking');
+                $query = $query->orderBy('ranking');
+            } elseif (env('DB_CONNECTION') == 'pgsql') {
+                $query = $query->select($columns);
+                $sub = TransaksiBarang::selectRaw('id_inventaris, sum(jumlah) as total_jumlah')->groupBy('id_inventaris');
+                $query = $query->selectRaw('RANK() OVER (ORDER BY subquery.total_jumlah) AS ranking');
+                $query = $query->leftJoinSub($sub, 'subquery', function ($join) {
+                    $join->on('inventaris.id', '=', 'subquery.id_inventaris');
+                });
+                $query = $query->orderBy('ranking');
+            }
         }
 
         if ($kategori > 0) {
