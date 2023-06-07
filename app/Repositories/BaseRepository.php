@@ -7,6 +7,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 abstract class BaseRepository
 {
@@ -90,7 +91,7 @@ abstract class BaseRepository
     /**
      * Retrieve all records with given filter criteria
      */
-    public function all(array $search = [], int $skip = null, int $limit = null, array $columns = ['*']): Collection
+    public function all(array $search = [], int $skip = null, int $limit = null, array $columns = ['*'])
     {
         $query = $this->allQuery($search, $skip, $limit);
 

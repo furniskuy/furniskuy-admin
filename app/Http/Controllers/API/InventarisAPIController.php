@@ -89,13 +89,15 @@ class InventarisAPIController extends AppBaseController
      */
     public function index(Request $request): JsonResponse
     {
-        $inventaris = $this->inventarisRepository->all(
+        $inventaris = $this->inventarisRepository->listing(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
-            $request->get('limit')
+            $request->get('limit'),
+            $request->get('popular'),
+            $request->get('kategori')
         );
 
-        return $this->sendResponse(InventarisResource::collection($inventaris), 'Inventaris retrieved successfully');
+        return $this->sendResponse($inventaris, 'Inventaris retrieved successfully');
     }
 
     /**

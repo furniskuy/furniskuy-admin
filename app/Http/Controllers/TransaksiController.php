@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateTransaksiRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\TransaksiRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Laracasts\Flash\Flash;
 
 class TransaksiController extends AppBaseController
@@ -137,7 +138,7 @@ class TransaksiController extends AppBaseController
         }
 
         $transaksi->status = $request->status;
-        $transaksi->status_transaksi = $transaksi->getStatus($request->status);
+        $transaksi->status_transaksi = DB::select("call status_transaksi(1, @status)")[0]->status;
 
         if ($request->status == 2) {
             $transaksi->waktu_pembayaran = now();

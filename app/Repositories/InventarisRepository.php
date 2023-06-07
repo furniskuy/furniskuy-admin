@@ -28,4 +28,21 @@ class InventarisRepository extends BaseRepository
     {
         return Inventaris::class;
     }
+
+    public function listing(array $search = [], int $skip = null, int $limit = null, bool $popular = false, int $kategori = 0, array $columns = ['*'])
+    {
+        $query = $this->allQuery($search, $skip, $limit);
+
+        if ($popular) {
+            $query = $query->select($columns);
+            $query = $query->selectRaw('RANK() OVER (ORDER BY (SELECT SUM(jumlah) FROM transaksi_barang WHERE transaksi_barang.id_inventaris = inventaris.ID) DESC) AS ranking');
+            $query = $query->orderBy('ranking');
+        }
+
+        if ($kategori > 0) {
+            $query = $query->where('id_kategori', $kategori);
+        }
+
+        return $query->get($columns);
+    }
 }
