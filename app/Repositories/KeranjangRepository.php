@@ -72,9 +72,6 @@ class KeranjangRepository extends BaseRepository
             $transaksi = Transaksi::create($input);
             $transaksi->listBarang()->syncWithoutDetaching($transaksiBarang);
 
-
-            $keranjang = $this->model->where('id_pembeli', $id)->delete();
-
             return $transaksi;
         });
 
