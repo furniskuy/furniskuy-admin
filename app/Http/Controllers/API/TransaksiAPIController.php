@@ -253,7 +253,7 @@ class TransaksiAPIController extends AppBaseController
             return $this->sendError('Transaksi not found');
         }
 
-        if ($transaksi->status != 0) {
+        if ($transaksi->status != 1) {
             return $this->sendError('Tidak bisa membatalkan transaksi yang sudah diproses silahkan hubungi call center kami');
         }
 
