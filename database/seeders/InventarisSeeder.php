@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Inventaris;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class InventarisSeeder extends Seeder
 {
@@ -15,6 +15,8 @@ class InventarisSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create('id_ID');
+
         $inventarisList = [
             [
                 "nama" => "Sofa Vintage",
@@ -209,6 +211,20 @@ class InventarisSeeder extends Seeder
 
         foreach ($inventarisList as $key => $value) {
             Inventaris::create($value);
+        }
+
+        for ($i = 0; $i < 84; $i++) {
+            $inventaris = new Inventaris;
+            $inventaris->nama = $faker->sentence(3);
+            $inventaris->jumlah = $faker->numberBetween(1, 100);
+            $inventaris->harga = $faker->numberBetween(100000, 10000000);
+            $inventaris->deskripsi = $faker->paragraph(3);
+            $inventaris->id_user = $faker->numberBetween(1, 1);
+            $inventaris->id_supplier = $faker->numberBetween(1, 1);
+            $inventaris->id_kategori = $faker->numberBetween(1, 5);
+            $inventaris->foto = $faker->randomElement(['sofa-ruang.jpg', 'kursi-unik.jpg', 'bed-set.jpg', 'meja-minimalis.jpg', 'meja-kayu.jpg', 'rak-meja-tv.jpg']);
+            $inventaris->tags = $faker->randomElement(['sofa, ruang', 'kursi, unik', 'bed, set', 'meja, minimalis', 'meja, kayu', 'rak, meja, tv']);
+            $inventaris->save();
         }
     }
 }
