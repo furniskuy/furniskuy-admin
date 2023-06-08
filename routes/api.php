@@ -28,6 +28,10 @@ Route::group(['prefix' => 'auth'], function () {
     });
 });
 
+
+Route::resource('inventaris', App\Http\Controllers\API\InventarisAPIController::class)
+    ->except(['create', 'edit']);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('pegawais', App\Http\Controllers\API\PegawaiAPIController::class)
         ->except(['create', 'edit']);
@@ -42,9 +46,6 @@ Route::middleware('auth:sanctum')->group(function () {
         ->except(['create', 'edit']);
 
     Route::resource('kategoris', App\Http\Controllers\API\KategoriAPIController::class)
-        ->except(['create', 'edit']);
-
-    Route::resource('inventaris', App\Http\Controllers\API\InventarisAPIController::class)
         ->except(['create', 'edit']);
 
     Route::resource('metode-pembayaran', App\Http\Controllers\API\MetodePembayaranAPIController::class)
