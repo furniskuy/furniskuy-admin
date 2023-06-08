@@ -20,6 +20,7 @@ class MetodePembayaranSeeder extends Seeder
         $bni->nama_bank = 'BNI';
         $bni->no_rek = '1234567890';
         $bni->atas_nama = 'John Doe';
+        $bni->prefix = '8277';
         $bni->save();
 
         $bri = new MetodePembayaran;
@@ -27,6 +28,7 @@ class MetodePembayaranSeeder extends Seeder
         $bri->nama_bank = 'BRI';
         $bri->no_rek = '1234567890';
         $bri->atas_nama = 'John Doe';
+        $bri->prefix = '8077';
         $bri->save();
 
         $bca = new MetodePembayaran;
@@ -34,6 +36,7 @@ class MetodePembayaranSeeder extends Seeder
         $bca->nama_bank = 'BCA';
         $bca->no_rek = '1234567890';
         $bca->atas_nama = 'John Doe';
+        $bca->prefix = '88810';
         $bca->save();
     }
 }

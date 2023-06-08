@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama_bank');
             $table->string('no_rek');
             $table->string('atas_nama');
+            $table->string('prefix');
             $table->timestamps();
         });
     }
