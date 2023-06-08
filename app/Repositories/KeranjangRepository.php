@@ -72,6 +72,8 @@ class KeranjangRepository extends BaseRepository
             $transaksi = Transaksi::create($input);
             $transaksi->listBarang()->syncWithoutDetaching($transaksiBarang);
 
+            DB::commit();
+
             return $transaksi;
         });
 
