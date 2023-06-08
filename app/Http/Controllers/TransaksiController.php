@@ -138,10 +138,11 @@ class TransaksiController extends AppBaseController
         }
 
         $transaksi->status = $request->status;
+
         if (env('DB_CONNECTION') == 'mysql') {
-            $transaksi->status_transaksi = DB::select("call status_transaksi(1, @status)")[0]->status;
+            $transaksi->status_transaksi = DB::select("call status_transaksi(?, @status)", [$transaksi->status])[0]->status;
         } elseif (env('DB_CONNECTION') == 'pgsql') {
-            $transaksi->status_transaksi = DB::select("select status_transaksi(1)")[0]->status_transaksi;
+            $transaksi->status_transaksi = DB::select("select status_transaksi(?)", [$transaksi->status])[0]->status_transaksi;
         }
 
         if ($request->status == 2) {

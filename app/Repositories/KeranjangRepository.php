@@ -48,7 +48,7 @@ class KeranjangRepository extends BaseRepository
         $transaksi = DB::transaction(function () use ($id, $metode_pembayaran) {
             $keranjang = $this->model->where('id_pembeli', $id)->get();
 
-            $total = DB::select("SELECT total_bayar(1) as total")[0]->total;
+            $total = DB::select("SELECT total_bayar(?) as total", [$id])[0]->total;
 
             foreach ($keranjang as $item) {
                 if ($item->barang->jumlah < $item->jumlah) {
