@@ -3,8 +3,7 @@ name: Furniskuy Push Workflow
 on:
   push:
     branches:
-      - master
-      - staging
+      - main
 
 jobs:
   app-tests:
