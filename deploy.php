@@ -36,8 +36,8 @@ task('deploy:secrets', function () {
 });
 
 // Hosts
-host(env('APP_HOST')) // Name of the server
-    ->setHostname(env('APP_HOST')) // Hostname or IP address
+host('165.22.109.114') // Name of the server
+    ->setHostname('165.22.109.114') // Hostname or IP address
     ->set('remote_user', 'root') // SSH user
     ->set('branch', 'main') // Git branch
     ->set('deploy_path', '/var/www/furniskuy-admin'); // Deploy path
