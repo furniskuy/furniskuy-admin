@@ -29,49 +29,37 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 
-Route::resource('inventaris', App\Http\Controllers\API\InventarisAPIController::class)
-    ->except(['create', 'edit']);
+Route::apiResource('api-inventaris', App\Http\Controllers\API\InventarisAPIController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::resource('pegawais', App\Http\Controllers\API\PegawaiAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-pegawais', App\Http\Controllers\API\PegawaiAPIController::class);
 
-    Route::resource('pembelis', App\Http\Controllers\API\PembeliAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-pembelis', App\Http\Controllers\API\PembeliAPIController::class);
 
-    Route::resource('suppliers', App\Http\Controllers\API\SupplierAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-suppliers', App\Http\Controllers\API\SupplierAPIController::class);
 
-    Route::resource('ekspedisis', App\Http\Controllers\API\EkspedisiAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-ekspedisis', App\Http\Controllers\API\EkspedisiAPIController::class);
 
-    Route::resource('kategoris', App\Http\Controllers\API\KategoriAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-kategoris', App\Http\Controllers\API\KategoriAPIController::class);
 
-    Route::resource('metode-pembayaran', App\Http\Controllers\API\MetodePembayaranAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-metode-pembayaran', App\Http\Controllers\API\MetodePembayaranAPIController::class);
 
-    Route::resource('ratings', App\Http\Controllers\API\RatingAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-ratings', App\Http\Controllers\API\RatingAPIController::class);
 
-    Route::resource('transaksi-barangs', App\Http\Controllers\API\TransaksiBarangAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-transaksi-barangs', App\Http\Controllers\API\TransaksiBarangAPIController::class);
 
-    Route::resource('users', App\Http\Controllers\API\UserAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-users', App\Http\Controllers\API\UserAPIController::class);
 
     Route::group(['prefix' => 'keranjangs'], function () {
         Route::get('/user', [App\Http\Controllers\API\KeranjangAPIController::class, 'keranjangUser']);
         Route::post('/checkout', [App\Http\Controllers\API\KeranjangAPIController::class, 'checkout']);
     });
 
-    Route::resource('keranjangs', App\Http\Controllers\API\KeranjangAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-keranjangs', App\Http\Controllers\API\KeranjangAPIController::class);
 
     Route::group(['prefix' => 'transaksi'], function () {
         Route::get('/user', [App\Http\Controllers\API\TransaksiAPIController::class, 'transaksiUser']);
     });
 
-    Route::resource('transaksi', App\Http\Controllers\API\TransaksiAPIController::class)
-        ->except(['create', 'edit']);
+    Route::apiResource('api-transaksi', App\Http\Controllers\API\TransaksiAPIController::class);
 });
