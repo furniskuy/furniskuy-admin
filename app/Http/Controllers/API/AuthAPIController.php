@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\AppBaseController;
-use App\Models\Pembeli;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AuthController extends AppBaseController
+class AuthAPIController extends AppBaseController
 {
     /**
      * @OA\Post(
