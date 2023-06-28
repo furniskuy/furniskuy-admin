@@ -65,6 +65,26 @@ class InventarisAPIController extends AppBaseController
      *              format="int32"
      *          )
      *      ),
+     *      @OA\Parameter(
+     *         name="popular",
+     *         in="query",
+     *         description="popular",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int32"
+     *         )
+     *      ),
+     *      @OA\Parameter(
+     *          name="kategori",
+     *          in="query",
+     *          description="kategori",
+     *          required=false,
+     *          @OA\Schema(
+     *              type="integer",
+     *              format="int32"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -93,8 +113,8 @@ class InventarisAPIController extends AppBaseController
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit'),
-            $request->get('popular'),
-            $request->get('kategori')
+            $request->get('popular', false),
+            $request->get('kategori', 0)
         );
 
         return $this->sendResponse($inventaris, 'Inventaris retrieved successfully');
