@@ -6,6 +6,6 @@
         "port": "22",
         "beforeHooks": "",
         "afterHooks": "cd $ACTIVE_RELEASE_PATH && php artisan key:generate && php artisan optimize",
-        "path": "/var/www/html/furniskuy"
+        "path": "/var/www/html/furniskuy-admin"
     }
 ]
