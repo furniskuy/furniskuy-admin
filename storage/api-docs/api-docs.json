@@ -489,6 +489,26 @@
                             "type": "string",
                             "format": "int32"
                         }
+                    },
+                    {
+                        "name": "popular",
+                        "in": "query",
+                        "description": "popular",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "kategori",
+                        "in": "query",
+                        "description": "kategori",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
                     }
                 ],
                 "responses": {

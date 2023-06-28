@@ -11,8 +11,7 @@ jobs:
     name: Create deployment artifacts
     runs-on: ubuntu-latest
     outputs:
-      DEPLOYMENT_MATRIX: ${{ steps.export-deployment-matrix.outputs.DEPLOYMENT_MATRIX }}
-
+      servers: ${{ steps.export-deployment-matrix.outputs.servers }}
     steps:
       - uses: actions/checkout@v3
 
@@ -52,7 +51,7 @@ jobs:
         run: |
           delimiter="$(openssl rand -hex 8)"
           JSON="$(cat ./.github/workflows/servers.json)"
-          echo "DEPLOYMENT_MATRIX<<${delimiter}" >> "${GITHUB_OUTPUT}"
+          echo "servers<<${delimiter}" >> "${GITHUB_OUTPUT}"
           echo "$JSON" >> "${GITHUB_OUTPUT}"
           echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
@@ -62,7 +61,7 @@ jobs:
     needs: create-deployment-artifacts
     strategy:
       matrix:
-        server: ${{ fromJson(needs.create-deployment-artifacts.outputs.DEPLOYMENT_MATRIX) }}
+        server: ${{ fromJson(needs.create-deployment-artifacts.outputs.servers) }}
     steps:
       - uses: actions/download-artifact@v3
         with:
@@ -70,7 +69,7 @@ jobs:
       - name: Upload
         uses: appleboy/scp-action@master
         with:
-          host: ${{ matrix.server.ip }}
+          host: ${{ matrix.server.host }}
           username: ${{ matrix.server.username }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ matrix.server.port }}
@@ -82,7 +81,7 @@ jobs:
         env:
           GITHUB_SHA: ${{ github.sha }}
         with:
-          host: ${{ matrix.server.ip }}
+          host: ${{ matrix.server.host }}
           username: ${{ matrix.server.username }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ matrix.server.port }}
@@ -102,7 +101,7 @@ jobs:
     needs: [create-deployment-artifacts, prepare-release-on-servers]
     strategy:
       matrix:
-        server: ${{ fromJson(needs.create-deployment-artifacts.outputs.DEPLOYMENT_MATRIX) }}
+        server: ${{ fromJson(needs.create-deployment-artifacts.outputs.servers) }}
     steps:
       - name: Run before hooks
         uses: appleboy/ssh-action@master
@@ -113,7 +112,7 @@ jobs:
           STORAGE_PATH: ${{ matrix.server.path }}/storage
           BASE_PATH: ${{ matrix.server.path }}
         with:
-          host: ${{ matrix.server.ip }}
+          host: ${{ matrix.server.host }}
           username: ${{ matrix.server.username }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ matrix.server.port }}
@@ -132,7 +131,7 @@ jobs:
       ]
     strategy:
       matrix:
-        server: ${{ fromJson(needs.create-deployment-artifacts.outputs.DEPLOYMENT_MATRIX) }}
+        server: ${{ fromJson(needs.create-deployment-artifacts.outputs.servers) }}
     steps:
       - name: Activate release
         uses: appleboy/ssh-action@master
@@ -144,7 +143,7 @@ jobs:
           BASE_PATH: ${{ matrix.server.path }}
           LARAVEL_ENV: ${{ secrets.LARAVEL_ENV }}
         with:
-          host: ${{ matrix.server.ip }}
+          host: ${{ matrix.server.host }}
           username: ${{ matrix.server.username }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ matrix.server.port }}
@@ -168,7 +167,7 @@ jobs:
       ]
     strategy:
       matrix:
-        server: ${{ fromJson(needs.create-deployment-artifacts.outputs.DEPLOYMENT_MATRIX) }}
+        server: ${{ fromJson(needs.create-deployment-artifacts.outputs.servers) }}
     steps:
       - name: Run after hooks
         uses: appleboy/ssh-action@master
@@ -179,7 +178,7 @@ jobs:
           STORAGE_PATH: ${{ matrix.server.path }}/storage
           BASE_PATH: ${{ matrix.server.path }}
         with:
-          host: ${{ matrix.server.ip }}
+          host: ${{ matrix.server.host }}
           username: ${{ matrix.server.username }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ matrix.server.port }}
@@ -200,7 +199,7 @@ jobs:
       ]
     strategy:
       matrix:
-        server: ${{ fromJson(needs.create-deployment-artifacts.outputs.DEPLOYMENT_MATRIX) }}
+        server: ${{ fromJson(needs.create-deployment-artifacts.outputs.servers) }}
     steps:
       - name: Run after hooks
         uses: appleboy/ssh-action@master
@@ -208,7 +207,7 @@ jobs:
           RELEASES_PATH: ${{ matrix.server.path }}/releases
           ARTIFACTS_PATH: ${{ matrix.server.path }}/artifacts
         with:
-          host: ${{ matrix.server.ip }}
+          host: ${{ matrix.server.host }}
           username: ${{ matrix.server.username }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ matrix.server.port }}

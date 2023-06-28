@@ -1,7 +1,7 @@
 [
     {
         "name": "server-1",
-        "ip": "165.22.109.114",
+        "host": "165.22.109.114",
         "username": "root",
         "port": "22",
         "beforeHooks": "",
