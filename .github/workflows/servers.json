@@ -1,14 +1,7 @@
 [
     {
-        "name": "server-1",
-        "host": "128.199.139.191",
-        "username": "root",
-        "port": "22",
-        "path": "/var/www/html/furniskuy-admin"
-    },
-    {
-        "name": "server-1",
-        "host": "128.199.141.194",
+        "name": "server-0",
+        "host": "143.198.223.181",
         "username": "root",
         "port": "22",
         "path": "/var/www/html/furniskuy-admin"
