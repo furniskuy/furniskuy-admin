@@ -32,7 +32,7 @@ jobs:
       - name: Configure PHP
         uses: shivammathur/setup-php@master
         with:
-          php-version: 8.1
+          php-version: 8.3
           extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml pgsql
 
       - name: Composer install
@@ -131,7 +131,7 @@ jobs:
             php artisan key:generate
             php artisan optimize
             php artisan l5-swagger:generate
-            service php8.1-fpm reload
+            service php8.3-fpm reload
 
   clean-up:
     name: "${{ matrix.server.name }}: Clean up"
